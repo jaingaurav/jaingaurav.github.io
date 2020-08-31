@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaurav Jain</title>
+<meta name="description" content="Gaurav Jain — software engineer working on ML platforms, agent infrastructure, and high-performance systems. Principal Engineer at Snowflake; previously TensorFlow at Google Brain, founding engineer at Rubrik, kernel work at Facebook, and the original iPhone's Bluetooth stack at Apple.">
+<meta property="og:title" content="Gaurav Jain">
+<meta property="og:description" content="Software engineer — ML platforms, agent infrastructure, and high-performance systems. Snowflake, Google Brain, Rubrik, Facebook, Apple.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gauravjain.org">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23175d8d'/%3E%3Ctext x='32' y='42' font-family='Helvetica,Arial,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3EGJ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfcfe;
+  --bg-card: #ffffff;
+  --text: #1c2230;
+  --text-soft: #4c566a;
+  --text-faint: #7b8496;
+  --accent: #175d8d;
+  --accent-soft: #e3eef7;
+  --border: #e2e7ef;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 6px 20px -6px rgba(16, 24, 40, .08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f141c;
+    --bg-card: #161d28;
+    --text: #e7ebf2;
+    --text-soft: #aab4c4;
+    --text-faint: #7b8496;
+    --accent: #6db3e8;
+    --accent-soft: #1b2c3d;
+    --border: #263143;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 20px -6px rgba(0, 0, 0, .45);
+  }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16.5px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---- Hero ---- */
+header {
+  padding: 72px 0 48px;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(1200px 500px at 80% -10%, var(--accent-soft) 0%, transparent 60%);
+}
+.monogram {
+  width: 56px; height: 56px; border-radius: 14px;
+  background: var(--accent); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 22px; letter-spacing: .02em;
+  margin-bottom: 24px;
+}
+h1 { font-size: clamp(34px, 6vw, 46px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; }
+.tagline { margin-top: 12px; font-size: clamp(17px, 2.6vw, 20px); color: var(--text-soft); max-width: 34em; }
+.meta-line { margin-top: 10px; color: var(--text-faint); font-size: 14.5px; }
+.links { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--bg-card);
+  color: var(--text); font-size: 14.5px; font-weight: 500;
+  box-shadow: var(--shadow);
+  transition: transform .12s ease, border-color .12s ease;
+}
+.btn:hover { text-decoration: none; transform: translateY(-1px); border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn svg { width: 16px; height: 16px; fill: currentColor; flex: none; }
+
+/* ---- Sections ---- */
+section { padding: 44px 0 8px; }
+h2 {
+  font-size: 13px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .16em; color: var(--accent); margin-bottom: 22px;
+}
+.about p + p { margin-top: 14px; }
+.about { color: var(--text-soft); }
+.about strong { color: var(--text); font-weight: 600; }
+
+/* ---- Highlights ---- */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.stat {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 16px; box-shadow: var(--shadow);
+}
+.stat .num { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); white-space: nowrap; }
+.stat .lbl { margin-top: 4px; font-size: 13px; line-height: 1.45; color: var(--text-soft); }
+@media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---- Timeline ---- */
+.job { display: grid; grid-template-columns: 118px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.job:last-child { border-bottom: none; }
+.job .dates { color: var(--text-faint); font-size: 14px; font-variant-numeric: tabular-nums; padding-top: 2px; white-space: nowrap; }
+.job h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+.job .role { color: var(--text-soft); font-size: 14.5px; margin-top: 1px; }
+.job p { margin-top: 8px; color: var(--text-soft); font-size: 15px; }
+.job ul { margin-top: 8px; padding-left: 19px; color: var(--text-soft); font-size: 15px; }
+.job li { margin-top: 5px; }
+.job li::marker { color: var(--text-faint); }
+.job h4 {
+  margin-top: 14px; font-size: 13px; font-weight: 700;
+  letter-spacing: .04em; text-transform: uppercase; color: var(--accent);
+}
+.job h4 + ul { margin-top: 4px; }
+@media (max-width: 560px) { .job { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ---- Cards (open source / patents) ---- */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.card h3 { font-size: 15.5px; font-weight: 700; }
+.card .sub { font-size: 12.5px; color: var(--text-faint); text-transform: uppercase; letter-spacing: .06em; }
+.card p { font-size: 14px; color: var(--text-soft); flex: 1; }
+.card a.more { font-size: 13.5px; font-weight: 500; }
+@media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+
+.plain-list { list-style: none; }
+.plain-list li { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.plain-list li:last-child { border-bottom: none; }
+.plain-list .title { font-weight: 600; }
+.plain-list .detail { color: var(--text-soft); font-size: 14.5px; margin-top: 2px; }
+.pill {
+  display: inline-block; margin-left: 8px; padding: 2px 9px;
+  border-radius: 999px; background: var(--accent-soft); color: var(--accent);
+  font-size: 12px; font-weight: 600; vertical-align: 2px; white-space: nowrap;
+}
+
+/* ---- Footer ---- */
+footer {
+  margin-top: 56px; padding: 28px 0 44px;
+  border-top: 1px solid var(--border);
+  color: var(--text-faint); font-size: 14px;
+}
+footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
+footer .flinks { display: flex; gap: 16px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="monogram" aria-hidden="true">GJ</div>
+    <h1>Gaurav Jain</h1>
+    <p class="tagline">Engineer building agent infrastructure and ML systems — from cloud data platforms down through OS kernels to embedded firmware.</p>
+    <p class="meta-line">Principal Engineer, Snowflake · Menlo Park, CA</p>
+    <div class="links">
+      <a class="btn primary" href="https://www.linkedin.com/in/jaingaurav2/">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45z"/></svg>
+        LinkedIn
+      </a>
+      <a class="btn" href="https://github.com/jaingaurav">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a10.98 10.98 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .3.2.67.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        GitHub
+      </a>
+      <a class="btn" href="resume.pdf">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 13h8v1.5H8V13zm0 3.5h8V18H8v-1.5z"/></svg>
+        Resume (PDF)
+      </a>
+      <a class="btn" href="https://github.com/jaingaurav/jaingaurav.github.io/blob/main/resume.md">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.27 19.39H1.73A1.73 1.73 0 0 1 0 17.66V6.34c0-.96.77-1.73 1.73-1.73h20.54c.96 0 1.73.77 1.73 1.73v11.32c0 .95-.77 1.73-1.73 1.73zM5.77 15.92v-4.03l2.08 2.6 2.07-2.6v4.03h2.08V8.08h-2.08l-2.07 2.6-2.08-2.6H3.69v7.84h2.08zm13.85-3.92h-2.08V8.08h-2.07V12h-2.08l3.11 3.92L19.62 12z"/></svg>
+        Resume (Markdown)
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="about" id="about">
+    <h2>About</h2>
+    <p>I'm an engineer who has spent two decades building software at every layer of the stack — Bluetooth firmware on the <strong>original iPhone</strong> at Apple, Linux kernel tracing at <strong>Facebook</strong>, cloud data management as a founding engineer at <strong>Rubrik</strong>, and TensorFlow and applied ML at <strong>Google Brain</strong>. Today I'm a Principal Engineer at <strong>Snowflake</strong>, building the secure sandbox and agent infrastructure behind Cortex and Snowpark.</p>
+    <p>I studied computer science at the <strong>University of Waterloo</strong> (BMath and MASc), hold patents spanning distributed systems, databases, and wireless networking, and contribute to open source projects including Diamond, Pygments, and Wine.</p>
+    <p>Away from the keyboard I play piano, sing, lift weights, and take on home improvement projects.</p>
+  </section>
+
+  <section id="highlights">
+    <h2>Highlights</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">iPhone</div><div class="lbl">founding team member — brought up the original Bluetooth stack</div></div>
+      <div class="stat"><div class="num">10 → 1,000+</div><div class="lbl">Rubrik's growth while a founding engineer</div></div>
+      <div class="stat"><div class="num">Top 50</div><div class="lbl">all-time TensorFlow contributor</div></div>
+      <div class="stat"><div class="num">2×</div><div class="lbl">training speedup for TensorFlow's eager runtime</div></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="dates">2022 – Present</div>
+      <div>
+        <h3>Snowflake</h3>
+        <div class="role">Principal Engineer</div>
+        <h4>Cortex — CoWork / Snowflake Intelligence</h4>
+        <ul>
+          <li>Enabled agentic solutions to make use of secure sandbox containers, allowing agents to safely execute code in isolated environments.</li>
+          <li>Designed fine-grained access controls for database operations, giving users precise control over the scope of agent capabilities.</li>
+        </ul>
+        <h4>Snowpark</h4>
+        <ul>
+          <li>Rebuilt the sandbox infrastructure on top of gVisor, speeding up computation while maintaining strong security and improving program compatibility.</li>
+          <li>Improved gVisor performance and compatibility on ARM architectures, reducing memory-access overhead and improving CPU virtualization.</li>
+          <li>Built a secure pipeline for Python package delivery with sub-second dependency solves.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="dates">2018 – 2022</div>
+      <div>
+        <h3>Google Brain</h3>
+        <div class="role">Tech Lead / Engineering Manager</div>
+        <h4>TensorFlow</h4>
+        <ul>
+          <li>Delivered core functionality for TensorFlow 2.0 — GPU/TPU accelerator management, kernel coverage, and API testing and consistency.</li>
+          <li>Optimized the eager runtime for a 2× training speedup on dynamic models, matching graph-mode performance on ResNet50, and improved TPU startup time 50×.</li>
+          <li>Merged 446 commits upstream — a top-50 all-time TensorFlow contributor.</li>
+        </ul>
+        <h4>ML for Systems</h4>
+        <ul>
+          <li>Evaluated and developed applied ML techniques that replace heuristics in Google's backend systems.</li>
+          <li>ML-guided database query planning to reduce tail latency, ML-optimized block caching, and ML-tuned compiler optimization passes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="dates">2014 – 2018</div>
+      <div>
+        <h3>Rubrik</h3>
+        <div class="role">Founding Engineer / Engineering Manager</div>
+        <ul>
+          <li>Joined at ~10 people; the company grew to more than 1,000 within four years.</li>
+        </ul>
+        <h4>Polaris</h4>
+        <ul>
+          <li>Led backend development of Rubrik's ML-powered cloud data management platform.</li>
+          <li>Designed key components and service interactions — RPCs, database schema management — and built a fault-tolerant remote communication protocol with agent discoverability.</li>
+        </ul>
+        <h4>Jarvis</h4>
+        <ul>
+          <li>Implemented a cross-language performance and monitoring framework for comprehensive system analysis.</li>
+          <li>Enabled proactive customer support with a real-time log and stats alerting engine on the AWS stack.</li>
+        </ul>
+        <h4>Forge</h4>
+        <ul>
+          <li>Built the cluster management layer, enabling API-based cluster operations and node self-healing.</li>
+          <li>API-driven network configuration — bonding, VLANs, routing, failover — and Salesforce-integrated asset tracking for operations, sales, and support.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="dates">2012 – 2014</div>
+      <div>
+        <h3>Facebook</h3>
+        <div class="role">Senior Software Engineer — Kernel</div>
+        <ul>
+          <li>Designed and built a kernel-based tracing tool giving a complete system-level view during abnormal events — high latency, lock contention, application sluggishness.</li>
+          <li>Developed an IPVS scheduler enabling consistent hashing of network packets across load balancers.</li>
+          <li>Prototyped kernel networking patches to cut latency for latency-sensitive services.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="dates">2009 – 2012</div>
+      <div>
+        <h3>Blue Coat</h3>
+        <div class="role">Senior Software Systems Engineer — Core OS</div>
+        <ul>
+          <li>Enhanced the kernel and file system from 32-bit uniprocessor to 64-bit multi-processor aware.</li>
+          <li>Re-architected core operating system components to scale across processors.</li>
+          <li>Drove file system performance: CPU optimizations, disk defragmentation, cache efficiency, and disk I/O reductions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="dates">2008 – 2009</div>
+      <div>
+        <h3>Logitech</h3>
+        <div class="role">Senior Embedded Software Engineer</div>
+        <ul>
+          <li>Developed the high-end Harmony remote software platform — NAND file system, RF4CE drivers, and system middleware.</li>
+          <li>Designed a graphics framework and scalable data model that added functionality at a reduced bill-of-materials cost.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="dates">2006 – 2008</div>
+      <div>
+        <h3>Apple</h3>
+        <div class="role">Software Engineer — iPod &amp; iPhone</div>
+        <h4>iPod</h4>
+        <ul>
+          <li>Developed the third-party accessory communication framework for inbuilt accessories such as Nike+.</li>
+          <li>Hardware bring-up of new platforms through driver and boot loader implementation.</li>
+          <li>Optimized power across subsystems — audio and video engines, application frameworks, drivers, and the core OS.</li>
+        </ul>
+        <h4>iPhone</h4>
+        <ul>
+          <li>Brought up the embedded Bluetooth stack — earning Bluetooth's "Best of the Breed" award — and improved Bluetooth/WiFi coexistence.</li>
+          <li>Designed Apple wireless technologies such as Nike+ and the iPhone Bluetooth Headset.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="dates">2005</div>
+      <div>
+        <h3>BlackBerry</h3>
+        <div class="role">WLAN &amp; VoIP Software Developer</div>
+        <ul>
+          <li>Developed and debugged the RTP and SIP protocol stacks for the first WiFi BlackBerry devices.</li>
+          <li>Ported drivers for a new wireless network chipset into the existing code base.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="open-source">
+    <h2>Open Source</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="sub">Maintainer</div>
+        <h3>Diamond</h3>
+        <p>Python daemon that collects system and application metrics and publishes them to Graphite and other backends.</p>
+        <a class="more" href="https://github.com/python-diamond/Diamond">github.com/python-diamond ↗</a>
+      </div>
+      <div class="card">
+        <div class="sub">Contributor</div>
+        <h3>Pygments</h3>
+        <p>Improved Objective-C, C, and C++ lexing and highlighting for the Pygments syntax highlighter.</p>
+        <a class="more" href="https://pygments.org">pygments.org ↗</a>
+      </div>
+      <div class="card">
+        <div class="sub">Contributor &amp; QA</div>
+        <h3>Wine / CrossOver</h3>
+        <p>Patches improving Mac compatibility and installation scripts for running Windows games on CrossOver.</p>
+        <a class="more" href="https://www.winehq.org">winehq.org ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="patents">
+    <h2>Patents &amp; Research</h2>
+    <ul class="plain-list">
+      <li>
+        <div class="title">Cluster-Based Network File Server <span class="pill">Rubrik</span></div>
+        <div class="detail">Highly available file system optimized for ingesting backups from virtualized environments. <a href="https://patents.google.com/patent/US9715346B2/">US9715346 ↗</a></div>
+      </li>
+      <li>
+        <div class="title">Group Formation Using Anonymous Broadcast Information <span class="pill">Apple</span></div>
+        <div class="detail">Anonymous wireless broadcast over existing protocols and hardware, enabling a real-time social network of shared "tokens." <a href="https://patents.google.com/patent/US8695078B2/">US8695078 ↗</a></div>
+      </li>
+      <li>
+        <div class="title">Bulk Recovery Framework for Computing Objects <span class="pill">Rubrik</span></div>
+        <div class="detail"><a href="https://patents.google.com/patent/WO2025034386A1/">WO2025034386 ↗</a></div>
+      </li>
+      <li>
+        <div class="title">Autonomous Column Selection for Columnar Cache <span class="pill">Google</span></div>
+        <div class="detail"><a href="https://patents.google.com/patent/EP4413471A1/">EP4413471 ↗</a></div>
+      </li>
+      <li>
+        <div class="title">Chunk Allocation <span class="pill">Rubrik</span></div>
+        <div class="detail"><a href="https://patents.google.com/patent/US20200057699A1/">US20200057699 ↗</a></div>
+      </li>
+      <li>
+        <div class="title">Throttling Network Bandwidth Using Per-Node Network Interfaces <span class="pill">Rubrik</span></div>
+        <div class="detail"><a href="https://patents.google.com/patent/WO2019023260A1/">WO2019023260 ↗</a> · <a href="https://patents.google.com/patent/EP3659297A1/">EP3659297 ↗</a></div>
+      </li>
+      <li>
+        <div class="title">RR-TM: A Runtime for Eager Software Transactional Memory <span class="pill">Research</span></div>
+        <div class="detail">A new STM API with lower runtime overhead, backed by LLVM compiler passes for shared-memory access rewriting and path-sensitive alias analysis.</div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <ul class="plain-list">
+      <li>
+        <div class="title">University of Waterloo — Master of Applied Science (MASc)</div>
+        <div class="detail">Research: RR-TM, a runtime for eager software transactional memory · 2011 – 2013</div>
+      </li>
+      <li>
+        <div class="title">University of Waterloo — Bachelor of Mathematics, Honors Computer Science</div>
+        <div class="detail">Software Engineering Option, 2002 – 2006</div>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Gaurav Jain</span>
+    <span class="flinks">
+      <a href="https://www.linkedin.com/in/jaingaurav2/">LinkedIn</a>
+      <a href="https://github.com/jaingaurav">GitHub</a>
+      <a href="resume.pdf">Resume</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
