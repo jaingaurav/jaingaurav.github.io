@@ -23,6 +23,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 **Snowpark** — *Python, C++, ML Platform Infrastructure, gVisor, Operating Systems, Security Sandbox Containers, Databases*
 
+- Scaled Snowpark from 3% of product revenue to a $100M+ run rate, driving enterprise adoption of cloud data engineering.
 - Rebuilt sandbox infrastructure on top of gVisor, speeding up computation while maintaining strong security and improving program compatibility.
 - Improved gVisor performance and compatibility on ARM architectures, reducing memory-access overhead and improving CPU virtualization.
 - Built a secure pipeline for Python package delivery with sub-second dependency solves.
