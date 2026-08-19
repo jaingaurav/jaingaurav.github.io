@@ -117,6 +117,9 @@ h2 {
   letter-spacing: .04em; text-transform: uppercase; color: var(--accent);
 }
 .job h4 + ul { margin-top: 4px; }
+.job .skills-line { margin-top: 2px; font-size: 12.5px; font-style: italic; color: var(--text-faint); }
+.job .skills-line + ul { margin-top: 4px; }
+.job ul ul { margin-top: 3px; font-size: 14px; }
 @media (max-width: 560px) { .job { grid-template-columns: 1fr; gap: 4px; } }
 
 /* ---- Cards (open source / patents) ---- */
@@ -129,6 +132,9 @@ h2 {
 .card h3 { font-size: 15.5px; font-weight: 700; }
 .card .sub { font-size: 12.5px; color: var(--text-faint); text-transform: uppercase; letter-spacing: .06em; }
 .card p { font-size: 14px; color: var(--text-soft); flex: 1; }
+.card ul { padding-left: 17px; font-size: 14px; color: var(--text-soft); }
+.card li { margin-top: 4px; }
+.card li::marker { color: var(--text-faint); }
 .card a.more { font-size: 13.5px; font-weight: 500; }
 @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
 
@@ -203,212 +209,19 @@ footer .flinks { display: flex; gap: 16px; }
 
   <section id="experience">
     <h2>Experience</h2>
-
-    <div class="job">
-      <div class="dates">2022 – Present</div>
-      <div>
-        <h3>Snowflake</h3>
-        <div class="role">Principal Engineer</div>
-        <h4>Cortex — CoWork / Snowflake Intelligence</h4>
-        <ul>
-          <li>Enabled agentic solutions to make use of secure sandbox containers, allowing agents to safely execute code in isolated environments.</li>
-          <li>Designed fine-grained access controls for database operations, giving users precise control over the scope of agent capabilities.</li>
-        </ul>
-        <h4>Snowpark</h4>
-        <ul>
-          <li>Scaled Snowpark from 3% of product revenue to a $100M+ run rate, driving enterprise adoption of cloud data engineering.</li>
-          <li>Rebuilt the sandbox infrastructure on top of gVisor, speeding up computation while maintaining strong security and improving program compatibility.</li>
-          <li>Improved gVisor performance and compatibility on ARM architectures, reducing memory-access overhead and improving CPU virtualization.</li>
-          <li>Built a secure pipeline for Python package delivery with sub-second dependency solves.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="dates">2018 – 2022</div>
-      <div>
-        <h3>Google Brain</h3>
-        <div class="role">Tech Lead / Engineering Manager</div>
-        <h4>TensorFlow</h4>
-        <ul>
-          <li>Delivered core functionality for TensorFlow 2.0 — GPU/TPU accelerator management, kernel coverage, and API testing and consistency.</li>
-          <li>Optimized the eager runtime for a 2× training speedup on dynamic models, matching graph-mode performance on ResNet50, and improved TPU startup time 50×.</li>
-          <li>Merged 446 commits upstream — a top-50 all-time TensorFlow contributor.</li>
-        </ul>
-        <h4>ML for Systems</h4>
-        <ul>
-          <li>Evaluated and developed applied ML techniques that replace heuristics in Google's backend systems.</li>
-          <li>ML-guided database query planning to reduce tail latency, ML-optimized block caching, and ML-tuned compiler optimization passes.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="dates">2014 – 2018</div>
-      <div>
-        <h3>Rubrik</h3>
-        <div class="role">Founding Engineer / Engineering Manager</div>
-        <ul>
-          <li>Joined at ~10 people; the company grew to more than 1,000 within four years.</li>
-        </ul>
-        <h4>Polaris</h4>
-        <ul>
-          <li>Led backend development of Rubrik's ML-powered cloud data management platform.</li>
-          <li>Designed key components and service interactions — RPCs, database schema management — and built a fault-tolerant remote communication protocol with agent discoverability.</li>
-        </ul>
-        <h4>Jarvis</h4>
-        <ul>
-          <li>Implemented a cross-language performance and monitoring framework for comprehensive system analysis.</li>
-          <li>Enabled proactive customer support with a real-time log and stats alerting engine on the AWS stack.</li>
-        </ul>
-        <h4>Forge</h4>
-        <ul>
-          <li>Built the cluster management layer, enabling API-based cluster operations and node self-healing.</li>
-          <li>API-driven network configuration — bonding, VLANs, routing, failover — and Salesforce-integrated asset tracking for operations, sales, and support.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="dates">2012 – 2014</div>
-      <div>
-        <h3>Facebook</h3>
-        <div class="role">Senior Software Engineer — Kernel</div>
-        <ul>
-          <li>Designed and built a kernel-based tracing tool giving a complete system-level view during abnormal events — high latency, lock contention, application sluggishness.</li>
-          <li>Developed an IPVS scheduler enabling consistent hashing of network packets across load balancers.</li>
-          <li>Prototyped kernel networking patches to cut latency for latency-sensitive services.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="dates">2009 – 2012</div>
-      <div>
-        <h3>Blue Coat</h3>
-        <div class="role">Senior Software Systems Engineer — Core OS</div>
-        <ul>
-          <li>Enhanced the kernel and file system from 32-bit uniprocessor to 64-bit multi-processor aware.</li>
-          <li>Re-architected core operating system components to scale across processors.</li>
-          <li>Drove file system performance: CPU optimizations, disk defragmentation, cache efficiency, and disk I/O reductions.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="dates">2008 – 2009</div>
-      <div>
-        <h3>Logitech</h3>
-        <div class="role">Senior Embedded Software Engineer</div>
-        <ul>
-          <li>Developed the high-end Harmony remote software platform — NAND file system, RF4CE drivers, and system middleware.</li>
-          <li>Designed a graphics framework and scalable data model that added functionality at a reduced bill-of-materials cost.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="dates">2006 – 2008</div>
-      <div>
-        <h3>Apple</h3>
-        <div class="role">Software Engineer — iPod &amp; iPhone</div>
-        <h4>iPod</h4>
-        <ul>
-          <li>Developed the third-party accessory communication framework for inbuilt accessories such as Nike+.</li>
-          <li>Hardware bring-up of new platforms through driver and boot loader implementation.</li>
-          <li>Optimized power across subsystems — audio and video engines, application frameworks, drivers, and the core OS.</li>
-        </ul>
-        <h4>iPhone</h4>
-        <ul>
-          <li>Brought up the embedded Bluetooth stack — earning Bluetooth's "Best of the Breed" award — and improved Bluetooth/WiFi coexistence.</li>
-          <li>Designed Apple wireless technologies such as Nike+ and the iPhone Bluetooth Headset.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="dates">2005</div>
-      <div>
-        <h3>BlackBerry</h3>
-        <div class="role">WLAN &amp; VoIP Software Developer</div>
-        <ul>
-          <li>Developed and debugged the RTP and SIP protocol stacks for the first WiFi BlackBerry devices.</li>
-          <li>Ported drivers for a new wireless network chipset into the existing code base.</li>
-        </ul>
-      </div>
-    </div>
+{{EXPERIENCE}}
   </section>
 
   <section id="open-source">
     <h2>Open Source</h2>
     <div class="cards">
-      <div class="card">
-        <div class="sub">Maintainer</div>
-        <h3>Diamond</h3>
-        <p>Python daemon that collects system and application metrics and publishes them to Graphite and other backends.</p>
-        <a class="more" href="https://github.com/python-diamond/Diamond">github.com/python-diamond ↗</a>
-      </div>
-      <div class="card">
-        <div class="sub">Contributor</div>
-        <h3>Pygments</h3>
-        <p>Improved Objective-C, C, and C++ lexing and highlighting for the Pygments syntax highlighter.</p>
-        <a class="more" href="https://pygments.org">pygments.org ↗</a>
-      </div>
-      <div class="card">
-        <div class="sub">Contributor &amp; QA</div>
-        <h3>Wine / CrossOver</h3>
-        <p>Patches improving Mac compatibility and installation scripts for running Windows games on CrossOver.</p>
-        <a class="more" href="https://www.winehq.org">winehq.org ↗</a>
-      </div>
+{{OPEN_SOURCE}}
     </div>
-  </section>
-
-  <section id="patents">
-    <h2>Patents &amp; Research</h2>
-    <ul class="plain-list">
-      <li>
-        <div class="title">Cluster-Based Network File Server <span class="pill">Rubrik</span></div>
-        <div class="detail">Highly available file system optimized for ingesting backups from virtualized environments. <a href="https://patents.google.com/patent/US9715346B2/">US9715346 ↗</a></div>
-      </li>
-      <li>
-        <div class="title">Group Formation Using Anonymous Broadcast Information <span class="pill">Apple</span></div>
-        <div class="detail">Anonymous wireless broadcast over existing protocols and hardware, enabling a real-time social network of shared "tokens." <a href="https://patents.google.com/patent/US8695078B2/">US8695078 ↗</a></div>
-      </li>
-      <li>
-        <div class="title">Bulk Recovery Framework for Computing Objects <span class="pill">Rubrik</span></div>
-        <div class="detail"><a href="https://patents.google.com/patent/WO2025034386A1/">WO2025034386 ↗</a></div>
-      </li>
-      <li>
-        <div class="title">Autonomous Column Selection for Columnar Cache <span class="pill">Google</span></div>
-        <div class="detail"><a href="https://patents.google.com/patent/EP4413471A1/">EP4413471 ↗</a></div>
-      </li>
-      <li>
-        <div class="title">Chunk Allocation <span class="pill">Rubrik</span></div>
-        <div class="detail"><a href="https://patents.google.com/patent/US20200057699A1/">US20200057699 ↗</a></div>
-      </li>
-      <li>
-        <div class="title">Throttling Network Bandwidth Using Per-Node Network Interfaces <span class="pill">Rubrik</span></div>
-        <div class="detail"><a href="https://patents.google.com/patent/WO2019023260A1/">WO2019023260 ↗</a> · <a href="https://patents.google.com/patent/EP3659297A1/">EP3659297 ↗</a></div>
-      </li>
-      <li>
-        <div class="title">RR-TM: A Runtime for Eager Software Transactional Memory <span class="pill">Research</span></div>
-        <div class="detail">A new STM API with lower runtime overhead, backed by LLVM compiler passes for shared-memory access rewriting and path-sensitive alias analysis.</div>
-      </li>
-    </ul>
   </section>
 
   <section id="education">
     <h2>Education</h2>
-    <ul class="plain-list">
-      <li>
-        <div class="title">University of Waterloo — Master of Applied Science (MASc)</div>
-        <div class="detail">Research: RR-TM, a runtime for eager software transactional memory · 2011 – 2013</div>
-      </li>
-      <li>
-        <div class="title">University of Waterloo — Bachelor of Mathematics, Honors Computer Science</div>
-        <div class="detail">Software Engineering Option, 2002 – 2006</div>
-      </li>
-    </ul>
+{{EDUCATION}}
   </section>
 
 </main>

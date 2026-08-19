@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
-"""Generate resume.pdf from resume.md.
+"""Build the site into _site/ from resume.md — the single source of truth.
 
-Pipeline: resume.md -> styled HTML -> headless Chromium print-to-PDF.
+resume.md drives everything shared: the resume PDF, and the Experience,
+Open Source, and Education sections of the profile page. Page-only copy
+(hero, tagline, about, highlight cards) lives in templates/index.template.html.
+
+Outputs (default --out _site):
+    index.html   profile page (template + sections generated from resume.md)
+    resume.pdf   print-rendered resume
+    resume.md    copy of the source
 
 Usage:
-    python3 scripts/build_resume_pdf.py
+    python3 scripts/build.py [--out DIR]
 
 Requires: the `markdown` package (pip install markdown) and a Chromium/Chrome
 binary (set CHROME_BIN to override auto-detection). If the Inter font is not
@@ -12,6 +19,7 @@ installed, the script tries to fetch it from Google Fonts; otherwise the PDF
 falls back to the system sans-serif.
 """
 
+import argparse
 import os
 import re
 import shutil
@@ -20,9 +28,9 @@ import sys
 import tempfile
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-RESUME_MD = REPO_ROOT / "resume.md"
-RESUME_PDF = REPO_ROOT / "resume.pdf"
+REPO = Path(__file__).resolve().parent.parent
+RESUME_MD = REPO / "resume.md"
+TEMPLATE = REPO / "templates" / "index.template.html"
 
 CHROME_CANDIDATES = [
     os.environ.get("CHROME_BIN"),
@@ -38,7 +46,7 @@ GOOGLE_FONTS_CSS = (
     "?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap"
 )
 
-CSS = """
+PRINT_CSS = """
 @page { size: Letter; margin: 0.5in 0.6in; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -118,6 +126,14 @@ def ensure_inter_font() -> None:
         print(f"note: could not install Inter font ({exc}); using fallback fonts")
 
 
+def md_body(md_text: str) -> str:
+    import markdown
+
+    return markdown.markdown(md_text, output_format="html5")
+
+
+# ---------------------------------------------------------------- PDF
+
 def wrap_short_entries(body: str) -> str:
     """Keep short entries on a single page.
 
@@ -140,17 +156,14 @@ def wrap_short_entries(body: str) -> str:
     return "".join(out)
 
 
-def render_html(md_text: str) -> str:
-    import markdown
-
-    body = markdown.markdown(md_text, output_format="html5")
+def render_print_html(body: str) -> str:
     # "Heading text | 2018 – Present" -> role left, dates right.
     body = re.sub(
         r"<h3>(.*?) \| (.*?)</h3>",
         r'<h3><span class="role">\1</span><span class="dates">\2</span></h3>',
         body,
     )
-    # Same convention inside list items (education entries).
+    # Same convention inside list items.
     body = re.sub(
         r"<li>(.*?) \| (.*?)</li>",
         r'<li>\1<span class="dates">\2</span></li>',
@@ -159,26 +172,24 @@ def render_html(md_text: str) -> str:
     body = wrap_short_entries(body)
     return (
         "<!DOCTYPE html><html><head><meta charset='utf-8'>"
-        f"<title>Resume</title><style>{CSS}</style></head>"
+        f"<title>Resume</title><style>{PRINT_CSS}</style></head>"
         f"<body>{body}</body></html>"
     )
 
 
-def main() -> None:
+def build_pdf(body: str, out_pdf: Path) -> None:
     chrome = find_chrome()
     ensure_inter_font()
-    html = render_html(RESUME_MD.read_text(encoding="utf-8"))
-
     with tempfile.TemporaryDirectory() as tmp:
         page = Path(tmp) / "resume.html"
-        page.write_text(html, encoding="utf-8")
+        page.write_text(render_print_html(body), encoding="utf-8")
         subprocess.run(
             [
                 chrome,
                 "--headless",
                 "--no-sandbox",
                 "--disable-gpu",
-                f"--print-to-pdf={RESUME_PDF}",
+                f"--print-to-pdf={out_pdf}",
                 "--no-pdf-header-footer",
                 page.as_uri(),
             ],
@@ -186,7 +197,105 @@ def main() -> None:
             capture_output=True,
             timeout=120,
         )
-    print(f"wrote {RESUME_PDF}")
+
+
+# ---------------------------------------------------------------- page
+
+def sections_of(body: str) -> dict:
+    parts = re.split(r"<h2>(.*?)</h2>", body)
+    return {parts[i]: parts[i + 1] for i in range(1, len(parts) - 1, 2)}
+
+
+def entry_groups(section_html: str) -> list:
+    return [p for p in re.split(r"(?=<h3>)", section_html) if p.startswith("<h3>")]
+
+
+def transform_entry_body(html: str) -> str:
+    # **Project** — *skills* paragraphs -> sub-heading + muted skills line.
+    html = re.sub(
+        r"<p><strong>(.*?)</strong> — <em>(.*?)</em></p>",
+        r'<h4>\1</h4><div class="skills-line">\2</div>',
+        html,
+    )
+    # Standalone *Skills: …* paragraphs -> muted skills line.
+    html = re.sub(r"<p><em>(.*?)</em></p>", r'<div class="skills-line">\1</div>', html)
+    return html.strip()
+
+
+def job_block(group: str, strip_location: bool) -> str:
+    heading, rest = re.match(r"<h3>(.*?)</h3>(.*)", group, re.S).groups()
+    left, _, dates = heading.rpartition(" | ")
+    if not left:
+        left, dates = dates, ""
+    if strip_location and " — " in left:
+        left = left.rsplit(" — ", 1)[0]
+    if ", " in left:
+        role, company = left.rsplit(", ", 1)
+    else:
+        role, company = "", left
+    body = transform_entry_body(rest)
+    return (
+        '    <div class="job">\n'
+        f'      <div class="dates">{dates}</div>\n'
+        "      <div>\n"
+        f"        <h3>{company}</h3>\n"
+        f'        <div class="role">{role}</div>\n'
+        f"        {body}\n"
+        "      </div>\n"
+        "    </div>"
+    )
+
+
+def card_block(group: str) -> str:
+    heading, rest = re.match(r"<h3>(.*?)</h3>(.*)", group, re.S).groups()
+    sub, _, name = heading.partition(", ")
+    if not name:
+        sub, name = "", heading
+    rest = re.sub(r"<p><em>.*?</em></p>", "", rest).strip()  # cards omit skill lists
+    return (
+        '      <div class="card">\n'
+        f'        <div class="sub">{sub}</div>\n'
+        f"        <h3>{name}</h3>\n"
+        f"        {rest}\n"
+        "      </div>"
+    )
+
+
+def build_page(body: str, out_html: Path) -> None:
+    sections = sections_of(body)
+    experience = "\n".join(
+        job_block(g, strip_location=True)
+        for g in entry_groups(sections["Work Experience"])
+    )
+    education = "\n".join(
+        job_block(g, strip_location=False)
+        for g in entry_groups(sections["Education"])
+    )
+    open_source = "\n".join(
+        card_block(g) for g in entry_groups(sections["Open Source Projects"])
+    )
+    page = TEMPLATE.read_text(encoding="utf-8")
+    page = page.replace("{{EXPERIENCE}}", experience)
+    page = page.replace("{{EDUCATION}}", education)
+    page = page.replace("{{OPEN_SOURCE}}", open_source)
+    if "{{" in page:
+        sys.exit("error: unfilled placeholder left in the page template")
+    out_html.write_text(page, encoding="utf-8")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--out", default=str(REPO / "_site"), help="output directory")
+    args = parser.parse_args()
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    body = md_body(RESUME_MD.read_text(encoding="utf-8"))
+
+    build_page(body, out / "index.html")
+    build_pdf(body, out / "resume.pdf")
+    shutil.copy(RESUME_MD, out / "resume.md")
+    print(f"wrote {out}/index.html, {out}/resume.pdf, {out}/resume.md")
 
 
 if __name__ == "__main__":
