@@ -74,7 +74,13 @@ header {
   background:
     radial-gradient(1200px 500px at 80% -10%, var(--accent-soft) 0%, transparent 60%);
 }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px 48px; align-items: center; }
 .hero-top { display: flex; align-items: center; gap: 18px; }
+.hero-top .meta-line { margin-top: 4px; }
+@media (max-width: 700px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .links { flex-direction: row; flex-wrap: wrap; }
+}
 .avatar {
   width: 64px; height: 64px; border-radius: 16px;
   border: 1px solid var(--border); background: var(--bg-card);
@@ -83,7 +89,7 @@ header {
 h1 { font-size: clamp(28px, 5vw, 38px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; }
 .tagline { margin-top: 12px; font-size: clamp(16px, 2.2vw, 18px); color: var(--text-soft); max-width: 34em; }
 .meta-line { margin-top: 6px; color: var(--text-faint); font-size: 14.5px; }
-.links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; }
+.links { display: flex; flex-direction: column; gap: 10px; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 9px 16px; border-radius: 10px;
@@ -212,13 +218,17 @@ footer .flinks { display: flex; gap: 16px; }
 </nav>
 
 <header>
-  <div class="wrap">
-    <div class="hero-top">
-      <img class="avatar" src="https://gravatar.com/avatar/3ccbb6b93b6239ee96d20951967c52d59980a096790e91093fa766e1cabb2fad?s=160" alt="Gaurav Jain" width="64" height="64">
-      <h1>Gaurav Jain</h1>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-top">
+        <img class="avatar" src="https://gravatar.com/avatar/3ccbb6b93b6239ee96d20951967c52d59980a096790e91093fa766e1cabb2fad?s=160" alt="Gaurav Jain" width="64" height="64">
+        <div>
+          <h1>Gaurav Jain</h1>
+          <p class="meta-line">Principal Engineer, Snowflake</p>
+        </div>
+      </div>
+      <p class="tagline">Engineer building agent infrastructure and ML systems — from cloud data platforms down through OS kernels to embedded firmware.</p>
     </div>
-    <p class="tagline">Engineer building agent infrastructure and ML systems — from cloud data platforms down through OS kernels to embedded firmware.</p>
-    <p class="meta-line">Principal Engineer, Snowflake</p>
     <div class="links">
       <a class="btn primary" href="https://www.linkedin.com/in/jaingaurav2/">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45z"/></svg>

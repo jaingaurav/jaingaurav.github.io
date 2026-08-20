@@ -66,7 +66,7 @@ PRINT_CSS = """
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 body {
   font-family: 'Inter', 'DejaVu Sans', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 9.5pt; line-height: 1.4; color: #1f2430;
+  font-size: 9.5pt; line-height: 1.38; color: #1f2430;
 }
 a { color: #175d8d; text-decoration: none; }
 
@@ -77,7 +77,7 @@ h1 + p a { color: #175d8d; }
 h2 {
   font-size: 9.5pt; font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.14em; color: #175d8d;
-  margin: 9.5pt 0 4pt; padding-bottom: 2.5pt;
+  margin: 9pt 0 3.5pt; padding-bottom: 2.5pt;
   border-bottom: 1.2pt solid #c8d3de;
   break-after: avoid;
 }
@@ -86,7 +86,7 @@ h1 + p + h2 { margin-top: 8pt; }
 h3 {
   display: flex; justify-content: space-between; align-items: baseline;
   gap: 12pt; font-size: 10pt; font-weight: 600; color: #10151f;
-  margin: 6.5pt 0 1.5pt; break-after: avoid;
+  margin: 6pt 0 1.5pt; break-after: avoid;
 }
 h3 .dates { font-weight: 400; font-size: 8.5pt; color: #6a7284; white-space: nowrap; }
 
@@ -96,8 +96,8 @@ p:has(> strong:first-child), p:has(> em:first-child) { break-after: avoid; }
 p > strong { color: #10151f; font-weight: 600; }
 p > em, li > em { font-style: italic; font-size: 8.5pt; color: #6a7284; }
 
-ul { margin: 1pt 0 2.5pt; padding-left: 13pt; }
-li { margin: 0 0 1pt; padding-left: 2pt; break-inside: avoid; }
+ul { margin: 1pt 0 2pt; padding-left: 13pt; }
+li { margin: 0 0 0.8pt; padding-left: 2pt; break-inside: avoid; }
 li::marker { color: #9aa3b2; }
 li .dates { float: right; font-size: 8.5pt; color: #6a7284; }
 li strong { font-weight: 600; color: #10151f; }
@@ -181,6 +181,13 @@ def render_print_html(body: str) -> str:
     body = re.sub(
         r"<li>(.*?) \| (.*?)</li>",
         r'<li>\1<span class="dates">\2</span></li>',
+        body,
+    )
+    # h3 is a flex row (for right-aligned dates); wrap undated headings in a
+    # single span so links inside them aren't flung to the far edge.
+    body = re.sub(
+        r'<h3>(?!<span class="role">)(.*?)</h3>',
+        r'<h3><span class="role">\1</span></h3>',
         body,
     )
     body = wrap_short_entries(body)

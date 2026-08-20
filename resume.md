@@ -10,7 +10,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 - Scaled Snowpark from 3% of product revenue to a $100M+ run rate.
 - Top 50 all-time TensorFlow contributor — 446 commits merged upstream.
-- Founding engineer at Rubrik through its growth from 10 people to more than 1,000.
+- Founding engineer at Rubrik, a 10-person startup that grew into a 1,000+ person rocketship.
 - Founding iPhone team member — built its Bluetooth stack ("Best of the Breed" award).
 
 ## Work Experience
