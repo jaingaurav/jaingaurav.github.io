@@ -11,7 +11,7 @@ Checks (see .claude/skills/resume-site/SKILL.md for the conventions):
   - with --live: gauravjain.org serves the current content and the PDF
 
 Usage:
-    python3 scripts/audit.py [--live]
+    python3 .claude/skills/resume-site/scripts/audit.py [--live]
 
 Exits non-zero if any check fails.
 """
@@ -73,7 +73,7 @@ def main() -> None:
     parser.add_argument("--live", action="store_true", help="also verify gauravjain.org")
     args = parser.parse_args()
 
-    result = subprocess.run([sys.executable, str(REPO / "scripts/build.py")],
+    result = subprocess.run([sys.executable, str(Path(__file__).with_name("build.py"))],
                             capture_output=True, text=True)
     check(result.returncode == 0, "build succeeds" + ("" if result.returncode == 0
           else f" — {result.stderr.strip()[-200:]}"))

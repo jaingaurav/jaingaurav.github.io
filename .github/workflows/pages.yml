@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install markdown
-      - run: python3 scripts/build.py
+      - run: python3 .claude/skills/resume-site/scripts/build.py
         env:
           CHROME_BIN: /usr/bin/google-chrome
       - uses: actions/upload-pages-artifact@v3

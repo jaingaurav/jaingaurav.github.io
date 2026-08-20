@@ -11,7 +11,7 @@ Outputs (default --out _site):
     resume.md    copy of the source
 
 Usage:
-    python3 scripts/build.py [--out DIR]
+    python3 .claude/skills/resume-site/scripts/build.py [--out DIR]
 
 Requires: the `markdown` package (pip install markdown) and a Chromium/Chrome
 binary (set CHROME_BIN to override auto-detection). If the Inter font is not
@@ -28,7 +28,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parent.parent
+REPO = next(p for p in Path(__file__).resolve().parents if (p / "resume.md").is_file())
 RESUME_MD = REPO / "resume.md"
 TEMPLATE = REPO / "templates" / "index.template.html"
 ASSETS = REPO / "assets"

@@ -10,7 +10,7 @@ everything else from it, so the page, the PDF, and the markdown can never
 drift apart:
 
 ```
-resume.md ──► scripts/build.py ──► _site/index.html   (template + generated sections)
+resume.md ──► .claude/skills/resume-site/scripts/build.py ──► _site/index.html   (template + generated sections)
                               ├──► _site/resume.pdf   (print-rendered resume)
                               └──► _site/resume.md    (copy of the source)
 ```
@@ -19,8 +19,8 @@ resume.md ──► scripts/build.py ──► _site/index.html   (template + ge
 |------|---------|
 | `resume.md` | All resume content: summary, highlights, experience (patents interleaved), skills, open source, education. |
 | `templates/index.template.html` | Page-only chrome: hero, tagline, about, highlight cards, styling — plus `{{EXPERIENCE}}`, `{{OPEN_SOURCE}}`, and `{{EDUCATION}}` placeholders filled from `resume.md`. |
-| `scripts/build.py` | Builds `_site/` (never committed; see `.gitignore`). |
-| `scripts/audit.py` | Consistency audit: build, 3-page PDF, style rules, logo coverage; `--live` also checks gauravjain.org. |
+| `.claude/skills/resume-site/scripts/build.py` | Builds `_site/` (never committed; see `.gitignore`). |
+| `.claude/skills/resume-site/scripts/audit.py` | Consistency audit: build, 3-page PDF, style rules, logo coverage; `--live` also checks gauravjain.org. |
 | `.claude/skills/resume-site/` | Claude Code skill carrying the editing conventions, style rules, and update/audit workflow. |
 | `.github/workflows/pages.yml` | Rebuilds and deploys the site on every push to `main`. |
 | `CNAME` | Custom domain for GitHub Pages. |
@@ -45,7 +45,7 @@ Markdown conventions the build relies on:
 
 ```sh
 pip install markdown
-python3 scripts/build.py        # writes _site/
+python3 .claude/skills/resume-site/scripts/build.py        # writes _site/
 ```
 
 Needs a Chrome/Chromium binary for the PDF (auto-detected; override with

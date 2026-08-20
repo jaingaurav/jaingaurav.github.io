@@ -1,6 +1,6 @@
 ---
 name: resume-site
-description: Maintain gauravjain.org, resume.md, and the generated resume PDF. Use this whenever the user asks to update the resume, the website, or the PDF — adding or rewording a role, bullet, highlight, patent, publication, skill, or logo, changing page layout, fixing the PDF, or checking that everything is consistent and live. Even one-line edits should go through this skill, because every change flows through resume.md → scripts/build.py → GitHub Pages, and this skill carries the formatting conventions the build parses, the owner's standing style rules, and the audit steps.
+description: Maintain gauravjain.org, resume.md, and the generated resume PDF. Use this whenever the user asks to update the resume, the website, or the PDF — adding or rewording a role, bullet, highlight, patent, publication, skill, or logo, changing page layout, fixing the PDF, or checking that everything is consistent and live. Even one-line edits should go through this skill, because every change flows through resume.md → .claude/skills/resume-site/scripts/build.py → GitHub Pages, and this skill carries the formatting conventions the build parses, the owner's standing style rules, and the audit steps.
 ---
 
 # Maintaining the resume, site, and PDF
@@ -12,7 +12,7 @@ so the page, PDF, and served markdown cannot drift — as long as edits go to th
 right file:
 
 ```
-resume.md ──► scripts/build.py ──► _site/index.html   (template + generated sections)
+resume.md ──► .claude/skills/resume-site/scripts/build.py ──► _site/index.html   (template + generated sections)
                               ├──► _site/resume.pdf   (print CSS + headless Chromium)
                               └──► _site/resume.md    (copy)
 ```
@@ -21,8 +21,8 @@ resume.md ──► scripts/build.py ──► _site/index.html   (template + ge
 |---|---|
 | Any resume content (roles, bullets, patents, publications, skills, education) | `resume.md` only |
 | Page-only copy: hero, tagline, About, highlight cards, nav, footer | `templates/index.template.html` |
-| Company/school logos | `assets/logos/*.png` + the `LOGOS` map in `scripts/build.py` |
-| PDF typography/spacing | `PRINT_CSS` in `scripts/build.py` |
+| Company/school logos | `assets/logos/*.png` + the `LOGOS` map in `.claude/skills/resume-site/scripts/build.py` |
+| PDF typography/spacing | `PRINT_CSS` in `.claude/skills/resume-site/scripts/build.py` |
 | Page styling | the `<style>` block in the template |
 
 Generated files are never committed (`_site/` is gitignored). GitHub Actions
@@ -30,7 +30,7 @@ builds and deploys on every push to `main` — there is no manual deploy step.
 
 ## Markdown conventions the build parses
 
-The generators in `scripts/build.py` rely on these shapes; break them and
+The generators in `.claude/skills/resume-site/scripts/build.py` rely on these shapes; break them and
 sections silently render wrong:
 
 - Entry headings: `### Role, Company — Location | Dates`. Dates after ` | `
@@ -81,8 +81,8 @@ violations in old content rather than silently reintroducing them:
 ## Update workflow
 
 1. Edit the right file per the table above.
-2. Build: `python3 scripts/build.py`
-3. Audit: `python3 scripts/audit.py` — build success, 3-page PDF, banned
+2. Build: `python3 .claude/skills/resume-site/scripts/build.py`
+3. Audit: `python3 .claude/skills/resume-site/scripts/audit.py` — build success, 3-page PDF, banned
    terms, first-person check, logo coverage. Fix anything it reports.
 4. If the PDF overflows 3 pages, tighten `PRINT_CSS` knobs in this order:
    body `line-height` (1.4 → 1.38 → …), `li`/`ul` margins, `h2`/`h3`
@@ -94,13 +94,13 @@ violations in old content rather than silently reintroducing them:
    details you touched.
 6. Commit to `main` with a clear message and push. Never commit `_site/`
    or `__pycache__/`.
-7. Verify the deploy landed: `python3 scripts/audit.py --live` (polls
+7. Verify the deploy landed: `python3 .claude/skills/resume-site/scripts/audit.py --live` (polls
    gauravjain.org for the current content and checks `/resume.pdf`).
    Deploys typically land in 30–90 seconds.
 
 ## Auditing consistency
 
-Run `python3 scripts/audit.py` for the mechanical checks. Beyond it, a full
+Run `python3 .claude/skills/resume-site/scripts/audit.py` for the mechanical checks. Beyond it, a full
 audit means reading with intent:
 
 - Read the generated PDF end to end after content changes — page breaks,
