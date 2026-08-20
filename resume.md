@@ -124,11 +124,11 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 ## Skills
 
-- **Programming Languages:** C++, C, Python, Go, Objective-C, Lua, Scala, Java, x86/x86_64 Assembly, ARM
+- **Programming Languages:** C++, C, Python, Go, Objective-C, Scala, Java, x86/x86_64 Assembly, ARM
 - **ML & Agent Infrastructure:** TensorFlow, GPU/TPU Accelerators, ML for Systems, LLM Agent Infrastructure, Secure Sandboxing (gVisor)
 - **Systems:** Embedded Systems, File Systems, Distributed Systems, Concurrent and Parallel Computing, Networking, Protocol Architecture, Bluetooth, WiFi, Power Management, Performance Tuning, Kernel Tracing
-- **Operating Systems:** Linux, RTOS (RTXC, Unison), Mac OS X, iOS, BSD, QNX
-- **Infrastructure & Tools:** Kubernetes, GCP, AWS, Git, Mercurial, GMock, GTest, Graphite, ElasticSearch, JTAG
+- **Operating Systems:** Linux, RTOS (RTXC, Unison), Mac OS X, iOS, QNX
+- **Infrastructure & Tools:** Kubernetes, GCP, AWS, Git, Graphite, ElasticSearch
 
 ## Open Source Projects
 
