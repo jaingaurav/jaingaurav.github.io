@@ -10,8 +10,8 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 - Scaled Snowpark from 3% of product revenue to a $100M+ run rate.
 - Top 50 all-time TensorFlow contributor — 446 commits merged upstream.
-- Founding iPhone team member — brought up the original iPhone's Bluetooth stack (Bluetooth "Best of the Breed" award).
 - Founding engineer at Rubrik through its growth from 10 people to more than 1,000.
+- Founding iPhone team member — built its Bluetooth stack ("Best of the Breed" award).
 
 ## Work Experience
 
@@ -24,10 +24,11 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 **Snowpark** — *Python, C++, ML Platform Infrastructure, gVisor, Operating Systems, Security Sandbox Containers, Databases*
 
-- Scaled Snowpark from 3% of product revenue to a $100M+ run rate, driving enterprise adoption of cloud data engineering.
-- Rebuilt sandbox infrastructure on top of gVisor, speeding up computation while maintaining strong security and improving program compatibility.
+- Scaled Snowpark from 3% of product revenue to a $100M+ run rate — over 100 million queries per day from more than half of Snowflake's customers.
+- Rebuilt sandbox infrastructure on top of gVisor, strengthening isolation and program compatibility at zero performance cost — 1.5% faster than the legacy in-house sandbox on full benchmarks.
 - Improved gVisor performance and compatibility on ARM architectures, reducing memory-access overhead and improving CPU virtualization.
-- Built a secure pipeline for Python package delivery with sub-second dependency solves.
+- Optimized gVisor memory management, cutting virtual-memory bookkeeping (VMA entries) by 182x on memory-heavy workloads.
+- Built a secure pipeline for Python package delivery with sub-second dependency solves — a 99.95% solver-cache hit rate that cuts query initialization latency by ~85% in production.
 - Publications:
     - [SEE++: Evolving Snowpark Execution Environment for Modern Workloads](https://arxiv.org/abs/2511.12457)
     - [Snowpark: Performant, Secure, User-Friendly Data Engineering and AI/ML Next To Your Data](https://arxiv.org/abs/2508.05904)
@@ -43,7 +44,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 **ML for Systems** — *Python, C++, Machine Learning, AI, Mixed-Integer Programming, Databases*
 
 - Built and evaluated applied-ML techniques that replaced hand-tuned heuristics in Google's backend systems.
-- Projects included ML-guided database query planning to reduce tail latency, ML-optimized block caching, and ML-tuned compiler optimization passes.
+- Projects included ML-guided query planning — Kepler, a 2.41x geometric-mean speedup over PostgreSQL's optimizer with near-zero regressions — ML-optimized block caching, and ML-tuned compiler optimization passes.
     - Published: [Kepler: Robust Learning for Faster Parametric Query Optimization](https://arxiv.org/abs/2306.06798)
     - Patented: [Autonomous Column Selection for Columnar Cache](https://patents.google.com/patent/EP4413471A1/)
 
