@@ -36,7 +36,6 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 - Delivered core functionality for the next-generation TensorFlow 2.0 framework, including development of GPU/TPU accelerator management, missing kernel functionality, as well as API testing and consistency.
 - Optimized the core eager runtime, achieving a 2x training speedup for dynamic models, matching compiled graph mode performance on ResNet50 and improving TPU startup time by 50x.
-- Merged 446 commits upstream — a top-50 all-time TensorFlow contributor.
 
 **ML for Systems** — *Python, C++, Machine Learning, AI, Mixed-Integer Programming, Databases*
 
