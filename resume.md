@@ -24,8 +24,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 - Scaled Snowpark from 3% of product revenue to a $100M+ run rate — over 100 million queries per day from more than half of Snowflake's customers.
 - Rebuilt sandbox infrastructure on top of gVisor, strengthening isolation and program compatibility at zero performance cost — 1.5% faster than the legacy in-house sandbox on full benchmarks.
-- Improved gVisor performance and compatibility on ARM architectures, reducing memory-access overhead and improving CPU virtualization.
-- Optimized gVisor memory management, cutting virtual-memory bookkeeping (VMA entries) by 182x on memory-heavy workloads.
+- Optimized the gVisor runtime — cut virtual-memory bookkeeping (VMA entries) by 182x on memory-heavy workloads, and improved ARM performance and compatibility through lower memory-access overhead and better CPU virtualization.
 - Built a secure pipeline for Python package delivery with sub-second dependency solves — a 99.95% solver-cache hit rate that cuts query initialization latency by ~85% in production.
 - Publications:
     - [SEE++: Evolving Snowpark Execution Environment for Modern Workloads](https://arxiv.org/abs/2511.12457)
