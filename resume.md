@@ -133,14 +133,14 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 ## Open Source Projects
 
-### Maintainer & Developer, [python-diamond](https://github.com/python-diamond/Diamond)
+### [python-diamond](https://github.com/python-diamond/Diamond) — Maintainer & Developer
 
 *Skills: Python, Monitoring*
 
 - Maintain Diamond, a Python daemon that collects system and application metrics and publishes them to Graphite and other backends.
 - Review and merge community contributions, and develop new collectors and core improvements.
 
-### Developer & QA Tester, [CodeWeavers/WineHQ](https://www.winehq.org)
+### [CodeWeavers/WineHQ](https://www.winehq.org) — Developer & QA Tester
 
 *Skills: C, Win32 API, Git, Scripting*
 
@@ -148,7 +148,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 - Developed installation scripts for the operation of Windows games on CrossOver for Mac.
 - Tested and validated applications during CrossOver beta & release cycles.
 
-### Developer, [Pygments](https://pygments.org)
+### [Pygments](https://pygments.org) — Developer
 
 *Skills: Python, Objective-C, C, C++, Unicode, RTF, Mercurial*
 

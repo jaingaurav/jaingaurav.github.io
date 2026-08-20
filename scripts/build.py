@@ -44,6 +44,7 @@ LOGOS = {
     "Logitech": "assets/logos/logitech.png",
     "Apple": "assets/logos/apple.png",
     "BlackBerry": "assets/logos/blackberry.png",
+    "University of Waterloo": "assets/logos/waterloo.png",
 }
 
 CHROME_CANDIDATES = [
@@ -278,14 +279,13 @@ def job_block(group: str, strip_location: bool) -> str:
 
 def card_block(group: str) -> str:
     heading, rest = re.match(r"<h3>(.*?)</h3>(.*)", group, re.S).groups()
-    sub, _, name = heading.partition(", ")
-    if not name:
-        sub, name = "", heading
+    name, _, sub = heading.partition(" — ")
     rest = re.sub(r"<p><em>.*?</em></p>", "", rest).strip()  # cards omit skill lists
+    sub_html = f'        <div class="sub">{sub}</div>\n' if sub else ""
     return (
         '      <div class="card">\n'
-        f'        <div class="sub">{sub}</div>\n'
         f"        <h3>{name}</h3>\n"
+        f"{sub_html}"
         f"        {rest}\n"
         "      </div>"
     )
