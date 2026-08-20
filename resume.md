@@ -8,6 +8,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 ## Highlights
 
+- Scaled Snowpark from 3% of product revenue to a $100M+ run rate.
 - Top 50 all-time TensorFlow contributor — 446 commits merged upstream.
 - Founding iPhone team member — brought up the original iPhone's Bluetooth stack (Bluetooth "Best of the Breed" award).
 - Founding engineer at Rubrik through its growth from 10 people to more than 1,000.
@@ -27,6 +28,9 @@ Software engineer with 20 years of experience across the stack — machine learn
 - Rebuilt sandbox infrastructure on top of gVisor, speeding up computation while maintaining strong security and improving program compatibility.
 - Improved gVisor performance and compatibility on ARM architectures, reducing memory-access overhead and improving CPU virtualization.
 - Built a secure pipeline for Python package delivery with sub-second dependency solves.
+- Publications:
+    - [SEE++: Evolving Snowpark Execution Environment for Modern Workloads](https://arxiv.org/abs/2511.12457)
+    - [Snowpark: Performant, Secure, User-Friendly Data Engineering and AI/ML Next To Your Data](https://arxiv.org/abs/2508.05904)
 
 ### Tech Lead / Engineering Manager (TLM), Google Brain — Mountain View, CA | 2018 – 2022
 
@@ -40,6 +44,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 - Built and evaluated applied-ML techniques that replaced hand-tuned heuristics in Google's backend systems.
 - Projects included ML-guided database query planning to reduce tail latency, ML-optimized block caching, and ML-tuned compiler optimization passes.
+    - Published: [Kepler: Robust Learning for Faster Parametric Query Optimization](https://arxiv.org/abs/2306.06798)
     - Patented: [Autonomous Column Selection for Columnar Cache](https://patents.google.com/patent/EP4413471A1/)
 
 ### Founding Engineer / Engineering Manager, Rubrik — Palo Alto, CA | 2014 – 2018
@@ -87,7 +92,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 - Refactored codebase to be highly object-oriented and unit testable. In addition, built a testing framework to enable developer tests to be run on development machines as well as target devices.
 - Mentored junior team members through design reviews and technical knowledge transfer.
 
-### Senior Embedded Software Engineer, Logitech Inc — Mississauga, ON | 2008 – 2009
+### Senior Embedded Software Engineer, Logitech — Mississauga, ON | 2008 – 2009
 
 *Skills: C, C++, iPhone, ARM/Thumb, RTOS, QNX, NAND, RF4CE, Cortex-M3*
 
@@ -95,7 +100,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 - Designed a graphics framework and scalable data model for the next generation Harmony remote platform, offering enhanced functionality at a reduced Bill Of Materials cost.
 - Developed cross-platform canvas platform to develop apps across embedded devices & iPhone.
 
-### Software Engineer – iPod Touch/Nano & iPhone, Apple Inc — Cupertino, CA | 2006 – 2008
+### Software Engineer – iPod Touch/Nano & iPhone, Apple — Cupertino, CA | 2006 – 2008
 
 **iPod** — *C, C++, ARM, RTOS, EFI, Power Management, Nordic, DMA, I2S, I2C, JTAG*
 

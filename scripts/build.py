@@ -31,6 +31,20 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 RESUME_MD = REPO / "resume.md"
 TEMPLATE = REPO / "templates" / "index.template.html"
+ASSETS = REPO / "assets"
+
+# Company logos shown in the experience rail (relative to the site root).
+# Companies without an entry (e.g. Blue Coat, whose historical logo is no
+# longer served anywhere) simply render without a logo.
+LOGOS = {
+    "Snowflake": "assets/logos/snowflake.png",
+    "Google Brain": "assets/logos/google.png",
+    "Rubrik": "assets/logos/rubrik.png",
+    "Facebook": "assets/logos/facebook.png",
+    "Logitech": "assets/logos/logitech.png",
+    "Apple": "assets/logos/apple.png",
+    "BlackBerry": "assets/logos/blackberry.png",
+}
 
 CHROME_CANDIDATES = [
     os.environ.get("CHROME_BIN"),
@@ -233,13 +247,22 @@ def job_block(group: str, strip_location: bool) -> str:
         role, company = left.rsplit(", ", 1)
     else:
         role, company = "", left
+    logo = LOGOS.get(company)
+    logo_html = (
+        f'        <img class="logo" src="{logo}" alt="" loading="lazy">\n'
+        if logo else ""
+    )
+    role_html = f"        <h3>{role}</h3>\n" if role else ""
     body = transform_entry_body(rest)
     return (
         '    <div class="job">\n'
-        f'      <div class="dates">{dates}</div>\n'
+        '      <div class="side">\n'
+        f'        <div class="company">{company}</div>\n'
+        f"{logo_html}"
+        f'        <div class="dates">{dates}</div>\n'
+        "      </div>\n"
         "      <div>\n"
-        f"        <h3>{company}</h3>\n"
-        f'        <div class="role">{role}</div>\n'
+        f"{role_html}"
         f"        {body}\n"
         "      </div>\n"
         "    </div>"
@@ -295,6 +318,8 @@ def main() -> None:
     build_page(body, out / "index.html")
     build_pdf(body, out / "resume.pdf")
     shutil.copy(RESUME_MD, out / "resume.md")
+    if ASSETS.is_dir():
+        shutil.copytree(ASSETS, out / "assets", dirs_exist_ok=True)
     print(f"wrote {out}/index.html, {out}/resume.pdf, {out}/resume.md")
 
 

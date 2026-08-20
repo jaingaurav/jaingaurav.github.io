@@ -48,9 +48,24 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
-.wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---- Nav ---- */
+.topnav {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.topnav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 52px; }
+.topnav .brand { font-weight: 700; color: var(--text); font-size: 15px; white-space: nowrap; }
+.topnav .brand:hover { text-decoration: none; }
+.nav-links { display: flex; gap: 20px; overflow-x: auto; }
+.nav-links a { color: var(--text-soft); font-size: 14px; font-weight: 500; white-space: nowrap; }
+.nav-links a:hover { color: var(--accent); text-decoration: none; }
 
 /* ---- Hero ---- */
 header {
@@ -59,12 +74,10 @@ header {
   background:
     radial-gradient(1200px 500px at 80% -10%, var(--accent-soft) 0%, transparent 60%);
 }
-.monogram {
-  width: 56px; height: 56px; border-radius: 14px;
-  background: var(--accent); color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 22px; letter-spacing: .02em;
-  margin-bottom: 24px;
+.avatar {
+  width: 72px; height: 72px; border-radius: 18px;
+  border: 1px solid var(--border); background: var(--bg-card);
+  box-shadow: var(--shadow); display: block; margin-bottom: 24px;
 }
 h1 { font-size: clamp(34px, 6vw, 46px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; }
 .tagline { margin-top: 12px; font-size: clamp(17px, 2.6vw, 20px); color: var(--text-soft); max-width: 34em; }
@@ -83,7 +96,18 @@ h1 { font-size: clamp(34px, 6vw, 46px); font-weight: 800; letter-spacing: -0.025
 .btn svg { width: 16px; height: 16px; fill: currentColor; flex: none; }
 
 /* ---- Sections ---- */
-section { padding: 44px 0 8px; }
+section { padding: 44px 0 8px; scroll-margin-top: 68px; }
+.cols { display: grid; grid-template-columns: 350px minmax(0, 1fr); gap: 0 56px; align-items: start; }
+@media (max-width: 900px) {
+  .cols { display: flex; flex-direction: column; }
+  .cols .col { display: contents; }
+  #about { order: 1; }
+  #highlights { order: 2; }
+  #experience { order: 3; }
+  #open-source { order: 4; }
+  #education { order: 5; }
+}
+
 h2 {
   font-size: 13px; font-weight: 700; text-transform: uppercase;
   letter-spacing: .16em; color: var(--accent); margin-bottom: 22px;
@@ -93,21 +117,27 @@ h2 {
 .about strong { color: var(--text); font-weight: 600; }
 
 /* ---- Highlights ---- */
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.stat.wide { grid-column: 1 / -1; }
 .stat {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: 14px; padding: 18px 16px; box-shadow: var(--shadow);
 }
-.stat .num { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); white-space: nowrap; }
+.stat .num { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); white-space: nowrap; }
 .stat .lbl { margin-top: 4px; font-size: 13px; line-height: 1.45; color: var(--text-soft); }
-@media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---- Timeline ---- */
-.job { display: grid; grid-template-columns: 118px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.job { display: grid; grid-template-columns: 128px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
 .job:last-child { border-bottom: none; }
-.job .dates { color: var(--text-faint); font-size: 14px; font-variant-numeric: tabular-nums; padding-top: 2px; white-space: nowrap; }
-.job h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
-.job .role { color: var(--text-soft); font-size: 14.5px; margin-top: 1px; }
+.job .side { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.job .company { font-weight: 700; font-size: 15.5px; letter-spacing: -0.01em; line-height: 1.3; }
+.job .logo {
+  width: 34px; height: 34px; object-fit: contain;
+  border-radius: 9px; border: 1px solid var(--border);
+  background: #fff; padding: 4px;
+}
+.job .dates { color: var(--text-faint); font-size: 13.5px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.job h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
 .job p { margin-top: 8px; color: var(--text-soft); font-size: 15px; }
 .job ul { margin-top: 8px; padding-left: 19px; color: var(--text-soft); font-size: 15px; }
 .job li { margin-top: 5px; }
@@ -120,10 +150,15 @@ h2 {
 .job .skills-line { margin-top: 2px; font-size: 12.5px; font-style: italic; color: var(--text-faint); }
 .job .skills-line + ul { margin-top: 4px; }
 .job ul ul { margin-top: 3px; font-size: 14px; }
-@media (max-width: 560px) { .job { grid-template-columns: 1fr; gap: 4px; } }
+@media (max-width: 560px) {
+  .job { grid-template-columns: 1fr; gap: 8px; }
+  .job .side { flex-direction: row; align-items: center; gap: 10px; }
+  .job .logo { order: -1; width: 28px; height: 28px; padding: 3px; }
+  .job .dates { margin-left: auto; }
+}
 
 /* ---- Cards (open source / patents) ---- */
-.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.cards { display: grid; grid-template-columns: 1fr; gap: 12px; }
 .card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: 14px; padding: 18px; box-shadow: var(--shadow);
@@ -136,7 +171,6 @@ h2 {
 .card li { margin-top: 4px; }
 .card li::marker { color: var(--text-faint); }
 .card a.more { font-size: 13.5px; font-weight: 500; }
-@media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
 
 .plain-list { list-style: none; }
 .plain-list li { padding: 12px 0; border-bottom: 1px solid var(--border); }
@@ -161,9 +195,22 @@ footer .flinks { display: flex; gap: 16px; }
 </head>
 <body>
 
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="#">Gaurav Jain</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#open-source">Open Source</a>
+      <a href="#education">Education</a>
+      <a href="resume.pdf">Resume</a>
+    </div>
+  </div>
+</nav>
+
 <header>
   <div class="wrap">
-    <div class="monogram" aria-hidden="true">GJ</div>
+    <img class="avatar" src="https://gravatar.com/avatar/3ccbb6b93b6239ee96d20951967c52d59980a096790e91093fa766e1cabb2fad?s=160" alt="Gaurav Jain" width="72" height="72">
     <h1>Gaurav Jain</h1>
     <p class="tagline">Engineer building agent infrastructure and ML systems — from cloud data platforms down through OS kernels to embedded firmware.</p>
     <p class="meta-line">Principal Engineer, Snowflake · Menlo Park, CA</p>
@@ -180,7 +227,7 @@ footer .flinks { display: flex; gap: 16px; }
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 13h8v1.5H8V13zm0 3.5h8V18H8v-1.5z"/></svg>
         Resume (PDF)
       </a>
-      <a class="btn" href="https://github.com/jaingaurav/jaingaurav.github.io/blob/main/resume.md">
+      <a class="btn" href="resume.md">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.27 19.39H1.73A1.73 1.73 0 0 1 0 17.66V6.34c0-.96.77-1.73 1.73-1.73h20.54c.96 0 1.73.77 1.73 1.73v11.32c0 .95-.77 1.73-1.73 1.73zM5.77 15.92v-4.03l2.08 2.6 2.07-2.6v4.03h2.08V8.08h-2.08l-2.07 2.6-2.08-2.6H3.69v7.84h2.08zm13.85-3.92h-2.08V8.08h-2.07V12h-2.08l3.11 3.92L19.62 12z"/></svg>
         Resume (Markdown)
       </a>
@@ -188,7 +235,9 @@ footer .flinks { display: flex; gap: 16px; }
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap cols">
+
+  <div class="col">
 
   <section class="about" id="about">
     <h2>About</h2>
@@ -204,12 +253,8 @@ footer .flinks { display: flex; gap: 16px; }
       <div class="stat"><div class="num">10 → 1,000+</div><div class="lbl">Rubrik's growth while a founding engineer</div></div>
       <div class="stat"><div class="num">Top 50</div><div class="lbl">all-time TensorFlow contributor</div></div>
       <div class="stat"><div class="num">2×</div><div class="lbl">training speedup for TensorFlow's eager runtime</div></div>
+      <div class="stat wide"><div class="num">$100M+</div><div class="lbl">Snowpark run rate — grown from 3% of product revenue</div></div>
     </div>
-  </section>
-
-  <section id="experience">
-    <h2>Experience</h2>
-{{EXPERIENCE}}
   </section>
 
   <section id="open-source">
@@ -219,10 +264,21 @@ footer .flinks { display: flex; gap: 16px; }
     </div>
   </section>
 
+  </div>
+
+  <div class="col">
+
+  <section id="experience">
+    <h2>Experience</h2>
+{{EXPERIENCE}}
+  </section>
+
   <section id="education">
     <h2>Education</h2>
 {{EDUCATION}}
   </section>
+
+  </div>
 
 </main>
 
