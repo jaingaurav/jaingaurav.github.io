@@ -69,20 +69,21 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---- Hero ---- */
 header {
-  padding: 72px 0 48px;
+  padding: 36px 0 30px;
   border-bottom: 1px solid var(--border);
   background:
     radial-gradient(1200px 500px at 80% -10%, var(--accent-soft) 0%, transparent 60%);
 }
+.hero-top { display: flex; align-items: center; gap: 18px; }
 .avatar {
-  width: 72px; height: 72px; border-radius: 18px;
+  width: 64px; height: 64px; border-radius: 16px;
   border: 1px solid var(--border); background: var(--bg-card);
-  box-shadow: var(--shadow); display: block; margin-bottom: 24px;
+  box-shadow: var(--shadow); display: block; flex: none;
 }
-h1 { font-size: clamp(34px, 6vw, 46px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; }
-.tagline { margin-top: 12px; font-size: clamp(17px, 2.6vw, 20px); color: var(--text-soft); max-width: 34em; }
-.meta-line { margin-top: 10px; color: var(--text-faint); font-size: 14.5px; }
-.links { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+h1 { font-size: clamp(28px, 5vw, 38px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; }
+.tagline { margin-top: 12px; font-size: clamp(16px, 2.2vw, 18px); color: var(--text-soft); max-width: 34em; }
+.meta-line { margin-top: 6px; color: var(--text-faint); font-size: 14.5px; }
+.links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 9px 16px; border-radius: 10px;
@@ -97,7 +98,9 @@ h1 { font-size: clamp(34px, 6vw, 46px); font-weight: 800; letter-spacing: -0.025
 
 /* ---- Sections ---- */
 section { padding: 44px 0 8px; scroll-margin-top: 68px; }
-.cols { display: grid; grid-template-columns: 350px minmax(0, 1fr); gap: 0 56px; align-items: start; }
+.cols { display: grid; grid-template-columns: minmax(0, 1fr) 400px; align-items: start; }
+.cols .col:first-child { padding-right: 44px; }
+.cols .col.rail { border-left: 1px solid var(--border); padding-left: 44px; }
 @media (max-width: 900px) {
   .cols { display: flex; flex-direction: column; }
   .cols .col { display: contents; }
@@ -210,8 +213,10 @@ footer .flinks { display: flex; gap: 16px; }
 
 <header>
   <div class="wrap">
-    <img class="avatar" src="https://gravatar.com/avatar/3ccbb6b93b6239ee96d20951967c52d59980a096790e91093fa766e1cabb2fad?s=160" alt="Gaurav Jain" width="72" height="72">
-    <h1>Gaurav Jain</h1>
+    <div class="hero-top">
+      <img class="avatar" src="https://gravatar.com/avatar/3ccbb6b93b6239ee96d20951967c52d59980a096790e91093fa766e1cabb2fad?s=160" alt="Gaurav Jain" width="64" height="64">
+      <h1>Gaurav Jain</h1>
+    </div>
     <p class="tagline">Engineer building agent infrastructure and ML systems — from cloud data platforms down through OS kernels to embedded firmware.</p>
     <p class="meta-line">Principal Engineer, Snowflake</p>
     <div class="links">
@@ -239,6 +244,20 @@ footer .flinks { display: flex; gap: 16px; }
 
   <div class="col">
 
+  <section id="experience">
+    <h2>Experience</h2>
+{{EXPERIENCE}}
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+{{EDUCATION}}
+  </section>
+
+  </div>
+
+  <div class="col rail">
+
   <section class="about" id="about">
     <h2>About</h2>
     <p>I'm an engineer who has spent two decades building software at every layer of the stack — Bluetooth firmware on the <strong>original iPhone</strong> at Apple, Linux kernel tracing at <strong>Facebook</strong>, cloud data management as a founding engineer at <strong>Rubrik</strong>, and TensorFlow and applied ML at <strong>Google Brain</strong>. Today I'm a Principal Engineer at <strong>Snowflake</strong>, building the secure sandbox and agent infrastructure behind Cortex and Snowpark.</p>
@@ -262,20 +281,6 @@ footer .flinks { display: flex; gap: 16px; }
     <div class="cards">
 {{OPEN_SOURCE}}
     </div>
-  </section>
-
-  </div>
-
-  <div class="col">
-
-  <section id="experience">
-    <h2>Experience</h2>
-{{EXPERIENCE}}
-  </section>
-
-  <section id="education">
-    <h2>Education</h2>
-{{EDUCATION}}
   </section>
 
   </div>

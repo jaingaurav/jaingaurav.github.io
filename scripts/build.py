@@ -34,13 +34,13 @@ TEMPLATE = REPO / "templates" / "index.template.html"
 ASSETS = REPO / "assets"
 
 # Company logos shown in the experience rail (relative to the site root).
-# Companies without an entry (e.g. Blue Coat, whose historical logo is no
-# longer served anywhere) simply render without a logo.
+# Companies without an entry simply render without a logo.
 LOGOS = {
     "Snowflake": "assets/logos/snowflake.png",
     "Google Brain": "assets/logos/google.png",
     "Rubrik": "assets/logos/rubrik.png",
     "Facebook": "assets/logos/facebook.png",
+    "Blue Coat Systems": "assets/logos/bluecoat.png",
     "Logitech": "assets/logos/logitech.png",
     "Apple": "assets/logos/apple.png",
     "BlackBerry": "assets/logos/blackberry.png",
