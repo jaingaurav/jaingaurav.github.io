@@ -17,12 +17,12 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 ### Principal Engineer, Snowflake | 2022 – Present
 
-**Cortex — CoWork / Snowflake Intelligence** — *Go, ML Platform Infrastructure, LLM Agent Infrastructure, Security Sandbox Containers, Databases*
+**Cortex — CoWork / Snowflake Intelligence** — *Go, ML Platform Infrastructure, LLM Agent Infrastructure, Secure Sandbox Containers, Databases*
 
 - Enabled agentic solutions to make use of secure sandbox containers, allowing agents to safely execute code in isolated environments.
 - Designed fine-grained access controls for database operations, giving users precise control over the scope of agent capabilities.
 
-**Snowpark** — *Python, C++, ML Platform Infrastructure, gVisor, Operating Systems, Security Sandbox Containers, Databases*
+**Snowpark** — *Python, C++, ML Platform Infrastructure, gVisor, Operating Systems, Secure Sandbox Containers, Databases*
 
 - Scaled Snowpark from 3% of product revenue to a $100M+ run rate — over 100 million queries per day from more than half of Snowflake's customers.
 - Rebuilt sandbox infrastructure on top of gVisor, strengthening isolation and program compatibility at zero performance cost — 1.5% faster than the legacy in-house sandbox on full benchmarks.
