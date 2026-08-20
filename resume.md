@@ -82,7 +82,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 - Prototyped networking patches to reduce network latency for latency sensitive applications.
 - Built performance framework to identify inefficiencies in image fetching logic within iPhone app.
 
-### Senior Software Systems Engineer – Core OS, Blue Coat — Waterloo, ON | 2009 – 2012
+### Senior Software Systems Engineer – Core OS, Blue Coat Systems — Waterloo, ON | 2009 – 2012
 
 *Skills: C, C++, x86/x86_64 Assembly, RTOS, Concurrent & Parallel Computing, File Systems*
 
