@@ -130,6 +130,15 @@ def main() -> None:
             time.sleep(10)
         check(live_ok, f"live site serves current content ('{marker[:40]}…')")
         check(pdf_ok, "live /resume.pdf serves a PDF")
+        if not (live_ok and pdf_ok):
+            try:
+                md = urllib.request.urlopen("https://gauravjain.org/resume.md", timeout=15)
+                if md.status == 200:
+                    print("hint: /resume.md serves while the page/PDF fail — the Pages source")
+                    print("      has likely reverted to 'deploy from a branch'; see the")
+                    print("      Troubleshooting section of SKILL.md.")
+            except Exception:
+                pass
 
     print()
     if failures:

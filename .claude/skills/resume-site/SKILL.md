@@ -110,3 +110,20 @@ audit means reading with intent:
 - The template's hero/About/highlight cards are the only hand-maintained
   copy — when resume facts change (new role, new headline number), check
   whether those need a matching touch.
+
+## Troubleshooting
+
+**Site 404s on `/` and `/resume.pdf` while `/resume.md` still serves** — the
+Pages source setting has reverted from "GitHub Actions" to "deploy from a
+branch". GitHub's automatic "pages build and deployment" workflow then races
+this repo's workflow on every push and usually finishes last, publishing the
+raw branch — which by design has no `index.html`. The tell in the Actions run
+list is "pages build and deployment" runs appearing alongside "Build and
+deploy site" on pushes. Recover by (1) asking the owner to set
+Settings → Pages → Source back to **GitHub Actions**, and (2) re-running the
+"Build and deploy site" workflow via workflow_dispatch — a dispatch does not
+trigger the branch deployer, so the built site deploys unopposed.
+
+Note that CI green does not mean the site is healthy in this failure mode:
+the artifact was complete and every job succeeded while the site 404'd.
+Always verify the live site, not just the run conclusion.
