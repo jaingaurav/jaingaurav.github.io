@@ -17,8 +17,8 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 **Cortex — CoWork / Snowflake Intelligence** — *Go, ML Platform Infrastructure, LLM Agent Infrastructure, Secure Sandbox Containers, Databases*
 
-- Enabled agentic solutions to make use of secure sandbox containers, allowing agents to safely execute code in isolated environments.
-- Designed fine-grained access controls for database operations, giving users precise control over the scope of agent capabilities.
+- Built zero-latency secure sandboxes for agent code execution — model-generated code starts instantly, fully isolated, without leaving the customer's data boundary.
+- Designed strong access controls enabling fine-grained database access policies, giving customers precise control over the scope of agent capabilities.
 
 **Snowpark** — *Python, C++, ML Platform Infrastructure, gVisor, Operating Systems, Secure Sandbox Containers, Databases*
 
