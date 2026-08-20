@@ -61,7 +61,7 @@ GOOGLE_FONTS_CSS = (
 )
 
 PRINT_CSS = """
-@page { size: Letter; margin: 0.5in 0.6in; }
+@page { size: Letter; margin: 0.45in 0.55in; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 body {

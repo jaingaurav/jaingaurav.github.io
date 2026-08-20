@@ -1,7 +1,5 @@
 # Gaurav Jain
 
-[gauravjain.org](https://gauravjain.org) · [linkedin.com/in/jaingaurav2](https://www.linkedin.com/in/jaingaurav2/) · [github.com/jaingaurav](https://github.com/jaingaurav)
-
 ## Summary
 
 Software engineer with 20 years of experience across the stack — machine learning infrastructure, distributed storage, operating system kernels, and embedded firmware. Currently building secure sandboxed execution environments and fine-grained access controls for LLM agents at Snowflake.
@@ -55,7 +53,6 @@ Software engineer with 20 years of experience across the stack — machine learn
     - [Cluster-Based Network File Server](https://patents.google.com/patent/US9715346B2/) — a highly available file system optimized for ingesting backups from virtualized environments.
     - [Throttling Network Bandwidth Using Per-Node Network Interfaces](https://patents.google.com/patent/WO2019023260A1/)
     - [Chunk Allocation](https://patents.google.com/patent/US20200057699A1/)
-    - [Bulk Recovery Framework for Computing Objects](https://patents.google.com/patent/WO2025034386A1/)
 
 **Polaris** — *Go, Python, Kubernetes, Microservices, GCP, Machine Learning, Leadership*
 
