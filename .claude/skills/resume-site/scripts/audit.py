@@ -9,6 +9,7 @@ Checks (see .claude/skills/resume-site/SKILL.md for the conventions):
     map (missing logo = warning), and no LOGOS key is dead
   - every asset the generated page references exists on disk
   - with --live: gauravjain.org serves the current content and the PDF
+    (the raw /resume.md URL is intentionally NOT part of the built site)
 
 Usage:
     python3 .claude/skills/resume-site/scripts/audit.py [--live]
@@ -80,7 +81,7 @@ def main() -> None:
     if result.returncode != 0:
         sys.exit(1)
 
-    pdf = (SITE / "resume.pdf").read_bytes()
+    pdf = (SITE / "Gaurav Jain - Resume.pdf").read_bytes()
     pages = len(re.findall(rb"/Type\s*/Page[^s]", pdf))
     check(pages == 3, f"PDF is exactly 3 pages (got {pages})")
 
@@ -120,7 +121,7 @@ def main() -> None:
         for _ in range(9):
             try:
                 html = urllib.request.urlopen("https://gauravjain.org", timeout=15).read().decode()
-                head = urllib.request.urlopen("https://gauravjain.org/resume.pdf", timeout=15)
+                head = urllib.request.urlopen("https://gauravjain.org/Gaurav%20Jain%20-%20Resume.pdf", timeout=15)
                 live_ok = marker in html
                 pdf_ok = head.status == 200 and head.read(4) == b"%PDF"
             except Exception:
@@ -129,7 +130,7 @@ def main() -> None:
                 break
             time.sleep(10)
         check(live_ok, f"live site serves current content ('{marker[:40]}…')")
-        check(pdf_ok, "live /resume.pdf serves a PDF")
+        check(pdf_ok, "live Gaurav Jain - Resume.pdf serves a PDF")
         if not (live_ok and pdf_ok):
             try:
                 md = urllib.request.urlopen("https://gauravjain.org/resume.md", timeout=15)

@@ -13,8 +13,8 @@ right file:
 
 ```
 resume.md ──► .claude/skills/resume-site/scripts/build.py ──► _site/index.html   (template + generated sections)
-                              ├──► _site/resume.pdf   (print CSS + headless Chromium)
-                              └──► _site/resume.md    (copy)
+                              ├──► _site/Gaurav Jain - Resume.pdf   (print CSS + headless Chromium)
+                              └──► _site/Gaurav Jain - Resume.md    (copy)
 ```
 
 | To change… | Edit… |
@@ -75,8 +75,9 @@ violations in old content rather than silently reintroducing them:
 - **Highlights**: the resume list is reverse-chronological (iPhone last);
   the page cards run chronological (iPhone first, $100M+ last, full-width).
   Patent counts are not highlights.
-- **The page never references GitHub as the host** — the markdown button
-  links to the site's own `/resume.md`.
+- **The page never references GitHub as the host** — the resume buttons
+  link to the site's own `Gaurav Jain - Resume.pdf` / `.md` (URL-encoded
+  hrefs); the raw `/resume.md` source name is deliberately not served.
 
 ## Update workflow
 
@@ -95,7 +96,7 @@ violations in old content rather than silently reintroducing them:
 6. Commit to `main` with a clear message and push. Never commit `_site/`
    or `__pycache__/`.
 7. Verify the deploy landed: `python3 .claude/skills/resume-site/scripts/audit.py --live` (polls
-   gauravjain.org for the current content and checks `/resume.pdf`).
+   gauravjain.org for the current content and checks the served PDF).
    Deploys typically land in 30–90 seconds.
 
 ## Auditing consistency
@@ -113,7 +114,9 @@ audit means reading with intent:
 
 ## Troubleshooting
 
-**Site 404s on `/` and `/resume.pdf` while `/resume.md` still serves** — the
+**Site 404s on `/` and the resume PDF while `/resume.md` serves** — note the
+built site does not include a `/resume.md` path at all, so that URL answering
+200 means the raw branch is being served. It means the
 Pages source setting has reverted from "GitHub Actions" to "deploy from a
 branch". GitHub's automatic "pages build and deployment" workflow then races
 this repo's workflow on every push and usually finishes last, publishing the

@@ -11,8 +11,8 @@ drift apart:
 
 ```
 resume.md ──► .claude/skills/resume-site/scripts/build.py ──► _site/index.html   (template + generated sections)
-                              ├──► _site/resume.pdf   (print-rendered resume)
-                              └──► _site/resume.md    (copy of the source)
+                              ├──► _site/Gaurav Jain - Resume.pdf   (print-rendered resume)
+                              └──► _site/Gaurav Jain - Resume.md    (copy of the source)
 ```
 
 | File | Purpose |

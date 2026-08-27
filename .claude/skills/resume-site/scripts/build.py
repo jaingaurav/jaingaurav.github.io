@@ -7,8 +7,8 @@ Open Source, and Education sections of the profile page. Page-only copy
 
 Outputs (default --out _site):
     index.html   profile page (template + sections generated from resume.md)
-    resume.pdf   print-rendered resume
-    resume.md    copy of the source
+    Gaurav Jain - Resume.pdf   print-rendered resume
+    Gaurav Jain - Resume.md    copy of the source
 
 Usage:
     python3 .claude/skills/resume-site/scripts/build.py [--out DIR]
@@ -323,11 +323,11 @@ def main() -> None:
     body = md_body(RESUME_MD.read_text(encoding="utf-8"))
 
     build_page(body, out / "index.html")
-    build_pdf(body, out / "resume.pdf")
-    shutil.copy(RESUME_MD, out / "resume.md")
+    build_pdf(body, out / "Gaurav Jain - Resume.pdf")
+    shutil.copy(RESUME_MD, out / "Gaurav Jain - Resume.md")
     if ASSETS.is_dir():
         shutil.copytree(ASSETS, out / "assets", dirs_exist_ok=True)
-    print(f"wrote {out}/index.html, {out}/resume.pdf, {out}/resume.md")
+    print(f"wrote {out}/index.html, {out}/Gaurav Jain - Resume.pdf, {out}/Gaurav Jain - Resume.md")
 
 
 if __name__ == "__main__":
