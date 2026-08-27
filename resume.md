@@ -15,7 +15,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 ### Principal Engineer, Snowflake | 2022 – Present
 
-**Cortex — CoWork / Snowflake Intelligence** — *Go, ML Platform Infrastructure, LLM Agent Infrastructure, Secure Sandbox Containers, Databases*
+**CoWork / Snowflake Intelligence** — *Go, ML Platform, LLM Agent Infrastructure, Prompt Engineering, Secure Sandbox Containers, Databases*
 
 - Built zero-latency secure sandboxes for agent code execution — model-generated code starts instantly, fully isolated, without leaving the customer's data boundary.
 - Designed strong access controls enabling fine-grained database access policies, giving customers precise control over the scope of agent capabilities.
