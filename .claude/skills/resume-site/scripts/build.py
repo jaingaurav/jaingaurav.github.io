@@ -61,6 +61,9 @@ GOOGLE_FONTS_CSS = (
     "https://fonts.googleapis.com/css2"
     "?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap"
 )
+# Entries whose PDF heading must start a new page (owner rule: Rubrik
+# opens page 2 so its entry is not split across the break).
+PAGE_BREAKS = {"Rubrik"}
 
 PRINT_CSS = """
 @page { size: Letter; margin: 0.45in 0.55in; }
@@ -102,6 +105,7 @@ li::marker { color: #9aa3b2; }
 li .dates { float: right; font-size: 8.5pt; color: #6a7284; }
 li strong { font-weight: 600; color: #10151f; }
 h3.hgrid {
+  margin-top: 10pt;
   line-height: 1.1;
   display: grid; grid-template-columns: 1fr auto 1fr;
   grid-template-areas: "role logo dates" "company logo loc";
@@ -111,6 +115,7 @@ h3.hgrid {
 .t-company { grid-area: company; color: #3f4a5c; }
 .t-dates { grid-area: dates; justify-self: end; font-weight: 400; font-size: 8.5pt; color: #6a7284; white-space: nowrap; }
 .t-loc { grid-area: loc; justify-self: end; font-weight: 400; font-size: 8.5pt; color: #9aa3b2; white-space: nowrap; }
+h3.pgbrk { break-before: page; }
 .plogo { grid-area: logo; justify-self: center; height: 20pt; max-width: 42pt; width: auto; }
 .keep { break-inside: avoid; }
 """
@@ -202,8 +207,9 @@ def render_print_html(body: str) -> str:
             title, company = left, ""
         uri = uris.get(company)
         logo = f'<img class="plogo" src="{uri}">' if uri else '<span class="plogo"></span>'
+        cls = "hgrid pgbrk" if company in PAGE_BREAKS else "hgrid"
         return (
-            '<h3 class="hgrid">'
+            f'<h3 class="{cls}">'
             f'<span class="t-role">{title}</span>{logo}'
             f'<span class="t-dates">{dates}</span>'
             f'<span class="t-company">{company}</span>'

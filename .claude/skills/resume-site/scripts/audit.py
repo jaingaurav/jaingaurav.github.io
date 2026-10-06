@@ -2,7 +2,7 @@
 """Audit the consistency of resume.md, the generated site, and the PDF.
 
 Checks (see .claude/skills/resume-site/SKILL.md for the conventions):
-  - the build succeeds and the PDF is exactly 3 pages
+  - the build succeeds and the PDF is at most 3 pages (hard cap)
   - no banned terms (hyperbole, "Inc" suffixes, removed location)
   - no first-person voice in the page template
   - every experience/education entry's company resolves against the LOGOS
@@ -82,7 +82,7 @@ def main() -> None:
 
     pdf = (SITE / "Gaurav Jain - Resume.pdf").read_bytes()
     pages = len(re.findall(rb"/Type\s*/Page[^s]", pdf))
-    check(pages == 3, f"PDF is exactly 3 pages (got {pages})")
+    check(pages <= 3, f"PDF is at most 3 pages (got {pages})")
 
     for path in (REPO / "resume.md", REPO / "templates/index.template.html"):
         text = path.read_text(encoding="utf-8")

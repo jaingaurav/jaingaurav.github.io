@@ -84,9 +84,12 @@ violations in old content rather than silently reintroducing them:
 
 1. Edit the right file per the table above.
 2. Build: `python3 .claude/skills/resume-site/scripts/build.py`
-3. Audit: `python3 .claude/skills/resume-site/scripts/audit.py` — build success, 3-page PDF, banned
-   terms, first-person check, logo coverage. Fix anything it reports.
-4. If the PDF overflows 3 pages, tighten `PRINT_CSS` knobs in this order:
+3. Audit: `python3 .claude/skills/resume-site/scripts/audit.py` — build success, PDF within
+   the 3-page cap (owner rule: never more than 3 pages), banned terms, first-person check, logo coverage. Fix anything it reports.
+4. Forced page starts live in `PAGE_BREAKS` in build.py (owner rule: Rubrik
+   opens page 2 so its entry isn't split); matching headings get a
+   `break-before: page` via the `pgbrk` class.
+   If the PDF overflows 3 pages, tighten `PRINT_CSS` knobs in this order:
    body `line-height` (1.4 → 1.38 → …), `li`/`ul` margins, `h2`/`h3`
    margins, then `@page` margins. Re-read the PDF after layout changes —
    look for orphaned bullets and split short entries.
