@@ -26,6 +26,9 @@
   --shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 6px 20px -6px rgba(16, 24, 40, .08);
 }
 @media (prefers-color-scheme: dark) {
+  .job .logo[src*="apple"], .stat-logo[src*="apple"], .stat-logo[src*="github"] { filter: invert(1); }
+  .hero-bg img { opacity: .16; }
+  .hero-bg img.far { opacity: .09; filter: blur(1px); }
   :root {
     --bg: #0f141c;
     --bg-card: #161d28;
@@ -71,9 +74,14 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 header {
   padding: 36px 0 30px;
   border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
   background:
     radial-gradient(1200px 500px at 80% -10%, var(--accent-soft) 0%, transparent 60%);
 }
+header .wrap { position: relative; z-index: 1; }
+.hero-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.hero-bg img { position: absolute; opacity: .12; }
+.hero-bg img.far { opacity: .07; filter: blur(1px); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px 48px; align-items: center; }
 .hero-top { display: flex; align-items: center; gap: 18px; }
 .hero-top .meta-line { margin-top: 4px; }
@@ -129,9 +137,11 @@ h2 {
 .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .stat.wide { grid-column: 1 / -1; }
 .stat {
+  position: relative;
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: 14px; padding: 18px 16px; box-shadow: var(--shadow);
 }
+.stat-logo { position: absolute; top: 14px; right: 14px; width: 22px; height: 22px; object-fit: contain; }
 .stat .num { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); white-space: nowrap; }
 .stat .lbl { margin-top: 4px; font-size: 13px; line-height: 1.45; color: var(--text-soft); }
 
@@ -140,11 +150,7 @@ h2 {
 .job:last-child { border-bottom: none; }
 .job .side { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
 .job .company { font-weight: 700; font-size: 15.5px; letter-spacing: -0.01em; line-height: 1.3; }
-.job .logo {
-  width: 34px; height: 34px; object-fit: contain;
-  border-radius: 9px; border: 1px solid var(--border);
-  background: #fff; padding: 4px;
-}
+.job .logo { width: 48px; height: 48px; object-fit: contain; }
 .job .dates { color: var(--text-faint); font-size: 13.5px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .job h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; }
 .job p { margin-top: 8px; color: var(--text-soft); font-size: 15px; }
@@ -162,7 +168,7 @@ h2 {
 @media (max-width: 560px) {
   .job { grid-template-columns: 1fr; gap: 8px; }
   .job .side { flex-direction: row; align-items: center; gap: 10px; }
-  .job .logo { order: -1; width: 28px; height: 28px; padding: 3px; }
+  .job .logo { order: -1; width: 30px; height: 30px; }
   .job .dates { margin-left: auto; }
 }
 
@@ -218,6 +224,18 @@ footer .flinks { display: flex; gap: 16px; }
 </nav>
 
 <header>
+  <div class="hero-bg" aria-hidden="true">
+    <img src="assets/logos/snowflake.png"  style="left:5%;  top:14%; width:56px; transform:perspective(600px) rotateX(18deg) rotateY(-24deg) rotate(-8deg);">
+    <img src="assets/logos/google.png"     style="left:20%; top:62%; width:40px; transform:perspective(600px) rotateX(-12deg) rotateY(30deg) rotate(6deg);">
+    <img src="assets/logos/rubrik.png"     style="left:36%; top:10%; width:34px; transform:perspective(600px) rotateX(24deg) rotateY(14deg) rotate(14deg);">
+    <img src="assets/logos/tensorflow.png" style="left:50%; top:56%; width:48px; transform:perspective(600px) rotateX(-20deg) rotateY(-18deg) rotate(-12deg);">
+    <img src="assets/logos/facebook.png"   style="left:63%; top:12%; width:30px; transform:perspective(600px) rotateX(10deg) rotateY(26deg) rotate(8deg);">
+    <img src="assets/logos/waterloo.png"   style="left:74%; top:64%; width:44px; transform:perspective(600px) rotateX(-16deg) rotateY(-28deg) rotate(10deg);">
+    <img src="assets/logos/blackberry.png" style="left:90%; top:18%; width:28px; transform:perspective(600px) rotateX(22deg) rotateY(18deg) rotate(-14deg);">
+    <img src="assets/logos/logitech.png"   class="far" style="left:29%; top:30%; width:26px; transform:perspective(600px) rotateX(-8deg) rotateY(-32deg) rotate(4deg);">
+    <img src="assets/logos/bluecoat.png"   class="far" style="left:69%; top:38%; width:32px; transform:perspective(600px) rotateX(14deg) rotateY(22deg) rotate(-6deg);">
+    <img src="assets/logos/snowflake.png"  class="far" style="left:94%; top:68%; width:36px; transform:perspective(600px) rotateX(-24deg) rotateY(12deg) rotate(16deg);">
+  </div>
   <div class="wrap hero-grid">
     <div>
       <div class="hero-top">
@@ -277,11 +295,11 @@ footer .flinks { display: flex; gap: 16px; }
   <section id="highlights">
     <h2>Highlights</h2>
     <div class="stats">
-      <div class="stat"><div class="num">iPhone</div><div class="lbl">founding team member — brought up the original Bluetooth stack</div></div>
-      <div class="stat"><div class="num">10 → 1,000+</div><div class="lbl">Rubrik's growth while a founding engineer</div></div>
-      <div class="stat"><div class="num">Top 50</div><div class="lbl">all-time TensorFlow contributor</div></div>
-      <div class="stat"><div class="num">2×</div><div class="lbl">training speedup for TensorFlow's eager runtime</div></div>
-      <div class="stat wide"><div class="num">$100M+</div><div class="lbl">Snowpark run rate — grown from 3% of product revenue</div></div>
+      <div class="stat"><img class="stat-logo" src="assets/logos/apple.png" alt=""><div class="num">iPhone</div><div class="lbl">founding team member — brought up the original Bluetooth stack</div></div>
+      <div class="stat"><img class="stat-logo" src="assets/logos/rubrik.png" alt=""><div class="num">10 → 1,000+</div><div class="lbl">Rubrik's growth while a founding engineer</div></div>
+      <div class="stat"><img class="stat-logo" src="assets/logos/github.png" alt=""><div class="num">Top 50</div><div class="lbl">all-time TensorFlow contributor</div></div>
+      <div class="stat"><img class="stat-logo" src="assets/logos/tensorflow.png" alt=""><div class="num">2×</div><div class="lbl">training speedup for TensorFlow's eager runtime</div></div>
+      <div class="stat wide"><img class="stat-logo" src="assets/logos/snowflake.png" alt=""><div class="num">$100M+</div><div class="lbl">Snowpark run rate — grown from 3% of product revenue</div></div>
     </div>
   </section>
 

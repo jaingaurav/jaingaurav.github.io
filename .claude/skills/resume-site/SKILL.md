@@ -70,8 +70,9 @@ violations in old content rather than silently reintroducing them:
 - **Engineer framing, not "leader".** Titles stay factual; self-descriptions
   say engineer.
 - **The webpage speaks in clipped, person-neutral voice** — no "I'm/I/my".
-- **Names**: no "Inc" suffixes; "Blue Coat Systems" spelled out; no
-  "Menlo Park, CA" anywhere (owner removed their current location).
+- **Names**: no "Inc" suffixes; "Blue Coat Systems" spelled out. Locations
+  are per-entry owner decisions — Snowflake and Facebook list
+  "Menlo Park, CA" (restored Oct 2026 after an earlier removal).
 - **Highlights**: the resume list is reverse-chronological (iPhone last);
   the page cards run chronological (iPhone first, $100M+ last, full-width).
   Patent counts are not highlights.

@@ -13,7 +13,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 ## Work Experience
 
-### Principal Engineer, Snowflake | 2022 – Present
+### Principal Engineer, Snowflake — Menlo Park, CA | 2022 – Present
 
 **CoWork / Snowflake Intelligence** — *Go, ML Platform, LLM Agent Infrastructure, Prompt Engineering, Secure Sandbox Containers, Databases*
 
@@ -69,7 +69,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 - Designed and implemented API-based network configuration such as bonding, VLANs, routing & failover.
 - Utilized Salesforce to provide an integrated asset tracking system for operations, sales & support.
 
-### Senior Software Engineer – Kernel, Facebook | 2012 – 2014
+### Senior Software Engineer – Kernel, Facebook — Menlo Park, CA | 2012 – 2014
 
 *Skills: C, C++, Lua, Python, Linux Kernel, Tracing, Networking, Performance/Latency, iOS, Obj-C*
 

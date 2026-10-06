@@ -20,6 +20,7 @@ falls back to the system sans-serif.
 """
 
 import argparse
+import base64
 import os
 import re
 import shutil
@@ -102,6 +103,7 @@ li { margin: 0 0 0.8pt; padding-left: 2pt; break-inside: avoid; }
 li::marker { color: #9aa3b2; }
 li .dates { float: right; font-size: 8.5pt; color: #6a7284; }
 li strong { font-weight: 600; color: #10151f; }
+.plogo { height: 11pt; max-width: 22pt; align-self: center; }
 .keep { break-inside: avoid; }
 """
 
@@ -191,6 +193,28 @@ def render_print_html(body: str) -> str:
         r'<h3><span class="role">\1</span></h3>',
         body,
     )
+    # "Company — City, ST" prints as "Company, City, ST" (owner preference).
+    body = re.sub(
+        r'(<span class="role">[^<]*?) — ([A-Z][A-Za-z. ]+, [A-Z]{2})(</span>)',
+        r"\1, \2\3",
+        body,
+    )
+    # Small company logo, centered in the whitespace between heading and dates.
+    uris = {}
+    for company, rel in LOGOS.items():
+        path = REPO / rel
+        if path.is_file():
+            uris[company] = "data:image/png;base64," + base64.b64encode(path.read_bytes()).decode()
+
+    def _add_logo(m):
+        role = m.group(1)
+        text = re.sub(r", [A-Z][A-Za-z. ]+, [A-Z]{2}$", "", role)
+        company = text.rsplit(", ", 1)[1] if ", " in text else text
+        uri = uris.get(company)
+        img = f'<img class="plogo" src="{uri}">' if uri else ""
+        return f'<h3><span class="role">{role}</span>{img}<span class="dates">'
+
+    body = re.sub(r'<h3><span class="role">([^<]*)</span><span class="dates">', _add_logo, body)
     body = wrap_short_entries(body)
     return (
         "<!DOCTYPE html><html><head><meta charset='utf-8'>"

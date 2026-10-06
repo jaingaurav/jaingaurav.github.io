@@ -35,7 +35,6 @@ BANNED = {
     "widely used": "hyperbole",
     "explosive": "hyperbole",
     "cutting-edge": "hyperbole",
-    "Menlo Park": "removed location",
     r"\bInc\b": '"Inc" suffixes are dropped from company names',
 }
 FIRST_PERSON = [r"\bI'm\b", r"\bI am\b", r"\bI\b", r"\bmy\b"]
