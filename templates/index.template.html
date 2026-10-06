@@ -166,6 +166,12 @@ h2 {
 .job .skills-line + ul { margin-top: 4px; }
 .job ul ul { margin-top: 3px; font-size: 14px; }
 @media (max-width: 560px) {
+  /* The five links fit a 360px row at 13px with the brand hidden; the
+     name appears in the hero right below, and overflow-x scrolling
+     remains the fallback for very narrow screens. */
+  .topnav .brand { display: none; }
+  .nav-links { width: 100%; justify-content: space-between; gap: 8px; }
+  .nav-links a { font-size: 13px; }
   .job { grid-template-columns: 1fr; gap: 8px; }
   .job .side { flex-direction: row; align-items: center; gap: 10px; }
   .job .logo { order: -1; width: 30px; height: 30px; }
@@ -225,16 +231,20 @@ footer .flinks { display: flex; gap: 16px; }
 
 <header>
   <div class="hero-bg" aria-hidden="true">
-    <img src="assets/logos/snowflake.png"  style="left:5%;  top:12%; width:88px; transform:perspective(600px) rotateX(18deg) rotateY(-24deg) rotate(-8deg);">
-    <img src="assets/logos/google.png"     style="left:20%; top:58%; width:62px; transform:perspective(600px) rotateX(-12deg) rotateY(30deg) rotate(6deg);">
-    <img src="assets/logos/rubrik.png"     style="left:36%; top:8%;  width:54px; transform:perspective(600px) rotateX(24deg) rotateY(14deg) rotate(14deg);">
-    <img src="assets/logos/tensorflow.png" style="left:50%; top:52%; width:74px; transform:perspective(600px) rotateX(-20deg) rotateY(-18deg) rotate(-12deg);">
-    <img src="assets/logos/facebook.png"   style="left:63%; top:10%; width:46px; transform:perspective(600px) rotateX(10deg) rotateY(26deg) rotate(8deg);">
-    <img src="assets/logos/waterloo.png"   style="left:60%; top:54%; width:78px; transform:perspective(600px) rotateX(-16deg) rotateY(-28deg) rotate(10deg);">
-    <img src="assets/logos/blackberry.png" style="left:90%; top:16%; width:44px; transform:perspective(600px) rotateX(22deg) rotateY(18deg) rotate(-14deg);">
-    <img src="assets/logos/logitech.png"   class="far" style="left:29%; top:30%; width:40px; transform:perspective(600px) rotateX(-8deg) rotateY(-32deg) rotate(4deg);">
-    <img src="assets/logos/bluecoat.png"   class="far" style="left:69%; top:36%; width:48px; transform:perspective(600px) rotateX(14deg) rotateY(22deg) rotate(-6deg);">
-    <img src="assets/logos/apple.png"      style="left:94%; top:62%; width:52px; transform:perspective(600px) rotateX(-24deg) rotateY(12deg) rotate(16deg);">
+    <!-- Sizes follow a prestige ladder (owner decision): Apple 92 > Google 84 >
+         TensorFlow 78 > Facebook 72 > Waterloo 66 > Rubrik 60 > BlackBerry 54 >
+         Snowflake 48 > Blue Coat 42 > Logitech 36. The bottom three are fixed:
+         Logitech smallest, then Blue Coat, then Snowflake. -->
+    <img src="assets/logos/snowflake.png"  style="left:5%;  top:14%; width:48px; transform:perspective(600px) rotateX(18deg) rotateY(-24deg) rotate(-8deg);">
+    <img src="assets/logos/google.png"     style="left:20%; top:54%; width:84px; transform:perspective(600px) rotateX(-12deg) rotateY(30deg) rotate(6deg);">
+    <img src="assets/logos/rubrik.png"     style="left:36%; top:8%;  width:60px; transform:perspective(600px) rotateX(24deg) rotateY(14deg) rotate(14deg);">
+    <img src="assets/logos/tensorflow.png" style="left:50%; top:52%; width:78px; transform:perspective(600px) rotateX(-20deg) rotateY(-18deg) rotate(-12deg);">
+    <img src="assets/logos/facebook.png"   style="left:63%; top:10%; width:72px; transform:perspective(600px) rotateX(10deg) rotateY(26deg) rotate(8deg);">
+    <img src="assets/logos/waterloo.png"   style="left:60%; top:56%; width:66px; transform:perspective(600px) rotateX(-16deg) rotateY(-28deg) rotate(10deg);">
+    <img src="assets/logos/blackberry.png" style="left:90%; top:16%; width:54px; transform:perspective(600px) rotateX(22deg) rotateY(18deg) rotate(-14deg);">
+    <img src="assets/logos/logitech.png"   class="far" style="left:29%; top:30%; width:36px; transform:perspective(600px) rotateX(-8deg) rotateY(-32deg) rotate(4deg);">
+    <img src="assets/logos/bluecoat.png"   class="far" style="left:69%; top:36%; width:42px; transform:perspective(600px) rotateX(14deg) rotateY(22deg) rotate(-6deg);">
+    <img src="assets/logos/apple.png"      style="left:91%; top:56%; width:92px; transform:perspective(600px) rotateX(-24deg) rotateY(12deg) rotate(16deg);">
   </div>
   <div class="wrap hero-grid">
     <div>
