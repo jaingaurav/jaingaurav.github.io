@@ -135,7 +135,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 *Skills: Python, Monitoring*
 
-- Maintain Diamond, a Python daemon that collects system and application metrics and publishes them to Graphite and other backends.
+- Python daemon collecting system and application metrics and publishes to time-series backends.
 - Review and merge community contributions, and develop new collectors and core improvements.
 
 ### [CodeWeavers/WineHQ](https://www.winehq.org) — Developer & QA Tester
