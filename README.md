@@ -20,10 +20,11 @@ resume.md ──► .claude/skills/resume-site/scripts/build.py ──► _site/
 | `resume.md` | All resume content: summary, highlights, experience (patents interleaved), skills, open source, education. |
 | `templates/index.template.html` | Page-only chrome: hero, tagline, about, highlight cards, styling — plus `{{EXPERIENCE}}`, `{{OPEN_SOURCE}}`, and `{{EDUCATION}}` placeholders filled from `resume.md`. |
 | `.claude/skills/resume-site/scripts/build.py` | Builds `_site/` (never committed; see `.gitignore`). |
-| `.claude/skills/resume-site/scripts/audit.py` | Consistency audit: build, 3-page PDF, style rules, logo coverage; `--live` also checks gauravjain.org. |
+| `.claude/skills/resume-site/scripts/audit.py` | Consistency audit: build, PDF within the 3-page cap, style rules, logo coverage; `--live` also checks gauravjain.org. |
 | `.claude/skills/resume-site/` | Claude Code skill carrying the editing conventions, style rules, and update/audit workflow. |
 | `.github/workflows/pages.yml` | Rebuilds and deploys the site on every push to `main`. |
 | `CNAME` | Custom domain for GitHub Pages. |
+| `robots.txt`, `sitemap.xml`, `templates/404.html` | Crawling defaults and the custom 404 page, copied into `_site` by the build. |
 
 ## Editing
 

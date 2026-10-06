@@ -367,6 +367,9 @@ def build_page(body: str, out_html: Path) -> None:
     page = page.replace("{{EXPERIENCE}}", experience)
     page = page.replace("{{EDUCATION}}", education)
     page = page.replace("{{OPEN_SOURCE}}", open_source)
+    # External links open in a new tab so visitors keep the resume page;
+    # internal anchors and same-site files are untouched.
+    page = page.replace('<a href="http', '<a target="_blank" rel="noopener" href="http')
     if "{{" in page:
         sys.exit("error: unfilled placeholder left in the page template")
     out_html.write_text(page, encoding="utf-8")
@@ -386,6 +389,9 @@ def main() -> None:
     shutil.copy(RESUME_MD, out / "Gaurav Jain - Resume.md")
     if ASSETS.is_dir():
         shutil.copytree(ASSETS, out / "assets", dirs_exist_ok=True)
+    shutil.copy(REPO / "robots.txt", out / "robots.txt")
+    shutil.copy(REPO / "sitemap.xml", out / "sitemap.xml")
+    shutil.copy(TEMPLATE.parent / "404.html", out / "404.html")
     print(f"wrote {out}/index.html, {out}/Gaurav Jain - Resume.pdf, {out}/Gaurav Jain - Resume.md")
 
 

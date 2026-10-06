@@ -109,6 +109,8 @@ def main() -> None:
     page = (SITE / "index.html").read_text(encoding="utf-8")
     for ref in set(re.findall(r'src="(assets/[^"]+)"', page)):
         check((SITE / ref).is_file(), f"page asset exists in _site: {ref}")
+    for extra in ("robots.txt", "sitemap.xml", "404.html"):
+        check((SITE / extra).is_file(), f"site extra exists in _site: {extra}")
 
     if args.live:
         marker = "Snowflake"

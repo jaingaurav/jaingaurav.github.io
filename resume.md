@@ -135,7 +135,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 *Skills: Python, Monitoring*
 
-- Python daemon collecting system and application metrics and publishes to time-series backends.
+- Python daemon collecting system and application metrics and publishing to time-series backends.
 - Review and merge community contributions, and develop new collectors and core improvements.
 
 ### [CodeWeavers/WineHQ](https://www.winehq.org) — Developer & QA Tester

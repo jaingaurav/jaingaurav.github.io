@@ -24,6 +24,7 @@ resume.md ──► .claude/skills/resume-site/scripts/build.py ──► _site/
 | Company/school logos | `assets/logos/*.png` + the `LOGOS` map in `.claude/skills/resume-site/scripts/build.py` |
 | PDF typography/spacing | `PRINT_CSS` in `.claude/skills/resume-site/scripts/build.py` |
 | Page styling | the `<style>` block in the template |
+| robots.txt / sitemap / 404 page | repo-root `robots.txt` & `sitemap.xml`, `templates/404.html` (copied into `_site` by the build) |
 
 Generated files are never committed (`_site/` is gitignored). GitHub Actions
 builds and deploys on every push to `main` — there is no manual deploy step.
