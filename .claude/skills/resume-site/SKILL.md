@@ -86,9 +86,9 @@ violations in old content rather than silently reintroducing them:
 2. Build: `python3 .claude/skills/resume-site/scripts/build.py`
 3. Audit: `python3 .claude/skills/resume-site/scripts/audit.py` — build success, PDF within
    the 3-page cap (owner rule: never more than 3 pages), banned terms, first-person check, logo coverage. Fix anything it reports.
-4. Forced page starts live in `PAGE_BREAKS` in build.py (owner rule: Rubrik
-   opens page 2 so its entry isn't split); matching headings get a
-   `break-before: page` via the `pgbrk` class.
+4. Forced page starts live in `PAGE_BREAKS` in build.py (currently empty —
+   the owner prefers natural breaks; add a company name to force one, which
+   applies `break-before: page` via the `pgbrk` class).
    If the PDF overflows 3 pages, tighten `PRINT_CSS` knobs in this order:
    body `line-height` (1.4 → 1.38 → …), `li`/`ul` margins, `h2`/`h3`
    margins, then `@page` margins. Re-read the PDF after layout changes —

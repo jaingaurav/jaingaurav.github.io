@@ -61,9 +61,9 @@ GOOGLE_FONTS_CSS = (
     "https://fonts.googleapis.com/css2"
     "?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap"
 )
-# Entries whose PDF heading must start a new page (owner rule: Rubrik
-# opens page 2 so its entry is not split across the break).
-PAGE_BREAKS = {"Rubrik"}
+# Entries whose PDF heading must start a new page. Empty by default —
+# breaks flow naturally; add a company name here to force one.
+PAGE_BREAKS = set()
 
 PRINT_CSS = """
 @page { size: Letter; margin: 0.45in 0.55in; }
