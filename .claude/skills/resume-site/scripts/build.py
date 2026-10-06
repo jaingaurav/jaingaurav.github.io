@@ -68,7 +68,7 @@ PRINT_CSS = """
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 body {
   font-family: 'Inter', 'DejaVu Sans', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 9.5pt; line-height: 1.38; color: #1f2430;
+  font-size: 9.5pt; line-height: 1.34; color: #1f2430;
 }
 a { color: #175d8d; text-decoration: none; }
 
@@ -79,7 +79,7 @@ h1 + p a { color: #175d8d; }
 h2 {
   font-size: 9.5pt; font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.14em; color: #175d8d;
-  margin: 9pt 0 3.5pt; padding-bottom: 2.5pt;
+  margin: 8pt 0 3pt; padding-bottom: 2.5pt;
   border-bottom: 1.2pt solid #c8d3de;
   break-after: avoid;
 }
@@ -88,7 +88,7 @@ h1 + p + h2 { margin-top: 8pt; }
 h3 {
   display: flex; justify-content: space-between; align-items: baseline;
   gap: 12pt; font-size: 10pt; font-weight: 600; color: #10151f;
-  margin: 6pt 0 1.5pt; break-after: avoid;
+  margin: 4.5pt 0 1.5pt; break-after: avoid;
 }
 h3 .dates { font-weight: 400; font-size: 8.5pt; color: #6a7284; white-space: nowrap; }
 
@@ -99,11 +99,21 @@ p > strong { color: #10151f; font-weight: 600; }
 p > em, li > em { font-style: italic; font-size: 8.5pt; color: #6a7284; }
 
 ul { margin: 1pt 0 2pt; padding-left: 13pt; }
-li { margin: 0 0 0.8pt; padding-left: 2pt; break-inside: avoid; }
+li { margin: 0 0 0.6pt; padding-left: 2pt; break-inside: avoid; }
 li::marker { color: #9aa3b2; }
 li .dates { float: right; font-size: 8.5pt; color: #6a7284; }
 li strong { font-weight: 600; color: #10151f; }
-.plogo { height: 11pt; max-width: 22pt; align-self: center; }
+h3.hgrid {
+  line-height: 1.22;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  grid-template-areas: "role logo dates" "company logo loc";
+  column-gap: 12pt; align-items: center;
+}
+.t-role { grid-area: role; }
+.t-company { grid-area: company; font-size: 8.5pt; font-weight: 600; color: #3f4a5c; }
+.t-dates { grid-area: dates; justify-self: end; font-weight: 400; font-size: 8.5pt; color: #6a7284; white-space: nowrap; }
+.t-loc { grid-area: loc; justify-self: end; font-weight: 400; font-size: 8pt; color: #9aa3b2; white-space: nowrap; }
+.plogo { grid-area: logo; justify-self: center; height: 15pt; max-width: 32pt; width: auto; }
 .keep { break-inside: avoid; }
 """
 
@@ -160,7 +170,7 @@ def wrap_short_entries(body: str) -> str:
     at most three bullets and no project sub-sections.
     """
     marker = body.find(">Open Source Projects</h2>")
-    parts = re.split(r"(?=<h3>)", body)
+    parts = re.split(r"(?=<h3)", body)
     out = [parts[0]]
     pos = len(parts[0])
     for part in parts[1:]:
@@ -174,47 +184,51 @@ def wrap_short_entries(body: str) -> str:
 
 
 def render_print_html(body: str) -> str:
-    # "Heading text | 2018 – Present" -> role left, dates right.
-    body = re.sub(
-        r"<h3>(.*?) \| (.*?)</h3>",
-        r'<h3><span class="role">\1</span><span class="dates">\2</span></h3>',
-        body,
-    )
-    # Same convention inside list items.
-    body = re.sub(
-        r"<li>(.*?) \| (.*?)</li>",
-        r'<li>\1<span class="dates">\2</span></li>',
-        body,
-    )
-    # h3 is a flex row (for right-aligned dates); wrap undated headings in a
-    # single span so links inside them aren't flung to the far edge.
-    body = re.sub(
-        r'<h3>(?!<span class="role">)(.*?)</h3>',
-        r'<h3><span class="role">\1</span></h3>',
-        body,
-    )
-    # "Company — City, ST" prints as "Company, City, ST" (owner preference).
-    body = re.sub(
-        r'(<span class="role">[^<]*?) — ([A-Z][A-Za-z. ]+, [A-Z]{2})(</span>)',
-        r"\1, \2\3",
-        body,
-    )
-    # Small company logo, centered in the whitespace between heading and dates.
     uris = {}
     for company, rel in LOGOS.items():
         path = REPO / rel
         if path.is_file():
             uris[company] = "data:image/png;base64," + base64.b64encode(path.read_bytes()).decode()
 
-    def _add_logo(m):
-        role = m.group(1)
-        text = re.sub(r", [A-Z][A-Za-z. ]+, [A-Z]{2}$", "", role)
-        company = text.rsplit(", ", 1)[1] if ", " in text else text
-        uri = uris.get(company)
-        img = f'<img class="plogo" src="{uri}">' if uri else ""
-        return f'<h3><span class="role">{role}</span>{img}<span class="dates">'
+    loc_re = re.compile(r" — ([A-Z][A-Za-z. ]+, [A-Z]{2})$")
 
-    body = re.sub(r'<h3><span class="role">([^<]*)</span><span class="dates">', _add_logo, body)
+    def _entry(m):
+        left, dates = m.group(1), m.group(2)
+        loc = ""
+        lm = loc_re.search(left)
+        if lm:
+            loc, left = lm.group(1), left[: lm.start()]
+        if ", " in left:
+            title, company = left.rsplit(", ", 1)
+        else:
+            title, company = left, ""
+        uri = uris.get(company)
+        logo = f'<img class="plogo" src="{uri}">' if uri else '<span class="plogo"></span>'
+        return (
+            '<h3 class="hgrid">'
+            f'<span class="t-role">{title}</span>{logo}'
+            f'<span class="t-dates">{dates}</span>'
+            f'<span class="t-company">{company}</span>'
+            f'<span class="t-loc">{loc}</span></h3>'
+        )
+
+    # Dated entry headings become a 3x2 grid: title over company on the
+    # left, the logo spanning both rows at page center, dates over
+    # location on the right.
+    body = re.sub(r"<h3>(.*?) \| (.*?)</h3>", _entry, body)
+    # Date convention inside list items.
+    body = re.sub(
+        r"<li>(.*?) \| (.*?)</li>",
+        r'<li>\1<span class="dates">\2</span></li>',
+        body,
+    )
+    # Undated h3s stay flex rows; wrap their content in a single span so
+    # links inside them aren't flung to the far edge.
+    body = re.sub(
+        r'<h3>(?!<span)(.*?)</h3>',
+        r'<h3><span class="role">\1</span></h3>',
+        body,
+    )
     body = wrap_short_entries(body)
     return (
         "<!DOCTYPE html><html><head><meta charset='utf-8'>"
