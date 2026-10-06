@@ -160,4 +160,4 @@ Software engineer with 20 years of experience across the stack — machine learn
 - Research: RR-TM, a runtime for eager software transactional memory (C++, LLVM, x86 assembly)
     - Designed a lower-overhead Software Transactional Memory (STM) API, an LLVM pass rewriting shared-memory accesses into runtime calls, and path-sensitive alias-analysis optimization.
 
-### Bachelor of Mathematics — Honors Computer Science (Software Engineering Option), University of Waterloo | 2002 – 2006
+### Bachelor of Mathematics<br>Honors Computer Science (Software Engineering Option), University of Waterloo | 2002 – 2006
