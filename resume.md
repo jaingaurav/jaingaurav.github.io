@@ -15,7 +15,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 ### Principal Engineer, Snowflake — Menlo Park, CA | 2022 – Present
 
-**CoWork / Snowflake Intelligence** — *Go, ML Platform, LLM Agent Infrastructure, Prompt Engineering, Secure Sandbox Containers, Databases*
+**CoWork** — *Golang, ML Platform, LLM Agent Infrastructure, Prompt Engineering, Secure Sandbox Containers, Databases*
 
 - Built zero-latency secure sandboxes for agent code execution — model-generated code starts instantly, fully isolated, without leaving the customer's data boundary.
 - Designed strong access controls enabling fine-grained database access policies, giving customers precise control over the scope of agent capabilities.
@@ -52,7 +52,7 @@ Software engineer with 20 years of experience across the stack — machine learn
     - [Throttling Network Bandwidth Using Per-Node Network Interfaces](https://patents.google.com/patent/WO2019023260A1/)
     - [Chunk Allocation](https://patents.google.com/patent/US20200057699A1/)
 
-**Polaris** — *Go, Python, Kubernetes, Microservices, GCP, Machine Learning, Leadership*
+**Polaris** — *Golang, Python, Kubernetes, Microservices, GCP, Machine Learning, Leadership*
 
 - Led backend development for Rubrik's ML-powered cloud data management platform.
 - Designed key components and service interactions, such as RPCs and database schema management.
@@ -123,7 +123,7 @@ Software engineer with 20 years of experience across the stack — machine learn
 
 ## Skills
 
-- **Programming Languages:** C++, C, Python, Go, Objective-C, Scala, Java, x86/x86_64 Assembly, ARM
+- **Programming Languages:** C++, C, Python, Golang, Objective-C, Scala, Java, x86/x86_64 Assembly, ARM
 - **ML & Agent Infrastructure:** TensorFlow, GPU/TPU Accelerators, ML for Systems, LLM Agent Infrastructure, Secure Sandboxing (gVisor)
 - **Systems:** Embedded Systems, File Systems, Distributed Systems, Concurrent and Parallel Computing, Networking, Protocol Architecture, Bluetooth, WiFi, Power Management, Performance Tuning, Kernel Tracing
 - **Operating Systems:** Linux, RTOS (RTXC, Unison), Mac OS X, iOS, QNX
