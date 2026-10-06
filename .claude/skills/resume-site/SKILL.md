@@ -92,8 +92,16 @@ violations in old content rather than silently reintroducing them:
    look for orphaned bullets and split short entries.
 5. If page layout changed, screenshot before pushing:
    `chromium --headless --no-sandbox --hide-scrollbars --window-size=1440,5300 --screenshot=/tmp/check.png _site/index.html`
-   (mobile: width 420). Check the split panes, rail logos, and dark-ish
-   details you touched.
+   Check the split panes, rail logos, and dark-ish
+   details you touched. For a phone check, do NOT trust plain
+   `--window-size=420` — headless Chromium still lays the page out at
+   desktop width and crops, so content looks falsely clipped. Emulate a
+   device instead (`pip install playwright`, then sync API:
+   `p.chromium.launch(executable_path='/opt/pw-browsers/chromium',
+   args=['--no-sandbox'])` with
+   `new_context(viewport={'width':390,'height':844}, is_mobile=True)`),
+   and confirm `document.documentElement.scrollWidth` equals the
+   viewport width.
 6. Commit to `main` with a clear message and push. Never commit `_site/`
    or `__pycache__/`.
 7. Verify the deploy landed: `python3 .claude/skills/resume-site/scripts/audit.py --live` (polls
