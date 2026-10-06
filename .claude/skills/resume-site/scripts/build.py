@@ -116,6 +116,11 @@ h3.hgrid {
 .t-dates { grid-area: dates; justify-self: end; font-weight: 400; font-size: 8.5pt; color: #6a7284; white-space: nowrap; }
 .t-loc { grid-area: loc; justify-self: end; font-weight: 400; font-size: 8.5pt; color: #9aa3b2; white-space: nowrap; }
 h3.pgbrk { break-before: page; }
+.hdr { display: flex; justify-content: space-between; align-items: center; }
+.hlinks { display: flex; flex-direction: column; align-items: flex-end; gap: 1pt; }
+.hlinks a { font-size: 8.5pt; }
+p.proj { margin-left: 10pt; }
+p.proj + ul { margin-left: 10pt; }
 .plogo { grid-area: logo; justify-self: center; height: 20pt; max-width: 42pt; width: auto; }
 .keep { break-inside: avoid; }
 """
@@ -232,6 +237,17 @@ def render_print_html(body: str) -> str:
         r'<h3>(?!<span)(.*?)</h3>',
         r'<h3><span class="role">\1</span></h3>',
         body,
+    )
+    # Project sub-sections (CoWork, Snowpark, Polaris, ...) indent under
+    # their company; company-level paragraphs and bullets stay flush.
+    body = body.replace("<p><strong>", '<p class="proj"><strong>')
+    # Name left, LinkedIn/GitHub stacked in the top right corner.
+    body = body.replace(
+        "<h1>Gaurav Jain</h1>",
+        '<div class="hdr"><h1>Gaurav Jain</h1><div class="hlinks">'
+        '<a href="https://www.linkedin.com/in/jaingaurav2">linkedin.com/in/jaingaurav2</a>'
+        '<a href="https://github.com/jaingaurav">github.com/jaingaurav</a>'
+        "</div></div>",
     )
     body = wrap_short_entries(body)
     return (
