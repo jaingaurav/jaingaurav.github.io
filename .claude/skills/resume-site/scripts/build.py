@@ -245,8 +245,9 @@ def render_print_html(body: str) -> str:
     body = body.replace(
         "<h1>Gaurav Jain</h1>",
         '<div class="hdr"><h1>Gaurav Jain</h1><div class="hlinks">'
-        '<a href="https://www.linkedin.com/in/jaingaurav2">linkedin.com/in/jaingaurav2</a>'
+        '<a href="https://gauravjain.org">gauravjain.org</a>'
         '<a href="https://github.com/jaingaurav">github.com/jaingaurav</a>'
+        '<a href="https://www.linkedin.com/in/jaingaurav2">linkedin.com/in/jaingaurav2</a>'
         "</div></div>",
     )
     body = wrap_short_entries(body)
