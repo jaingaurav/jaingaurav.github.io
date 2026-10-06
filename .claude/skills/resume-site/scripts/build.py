@@ -73,7 +73,6 @@ body {
 a { color: #175d8d; text-decoration: none; }
 
 h1 { font-size: 21pt; font-weight: 700; letter-spacing: 0.02em; color: #10151f; }
-h1 + p { font-size: 9pt; color: #4a5262; margin: 2pt 0 0; }
 h1 + p a { color: #175d8d; }
 
 h2 {
@@ -83,7 +82,6 @@ h2 {
   border-bottom: 1.2pt solid #c8d3de;
   break-after: avoid;
 }
-h1 + p + h2 { margin-top: 8pt; }
 
 h3 {
   display: flex; justify-content: space-between; align-items: baseline;
@@ -104,16 +102,16 @@ li::marker { color: #9aa3b2; }
 li .dates { float: right; font-size: 8.5pt; color: #6a7284; }
 li strong { font-weight: 600; color: #10151f; }
 h3.hgrid {
-  line-height: 1.22;
+  line-height: 1.1;
   display: grid; grid-template-columns: 1fr auto 1fr;
   grid-template-areas: "role logo dates" "company logo loc";
-  column-gap: 12pt; align-items: center;
+  gap: 0 12pt; align-items: center;
 }
 .t-role { grid-area: role; }
-.t-company { grid-area: company; font-size: 8.5pt; font-weight: 600; color: #3f4a5c; }
+.t-company { grid-area: company; color: #3f4a5c; }
 .t-dates { grid-area: dates; justify-self: end; font-weight: 400; font-size: 8.5pt; color: #6a7284; white-space: nowrap; }
-.t-loc { grid-area: loc; justify-self: end; font-weight: 400; font-size: 8pt; color: #9aa3b2; white-space: nowrap; }
-.plogo { grid-area: logo; justify-self: center; height: 15pt; max-width: 32pt; width: auto; }
+.t-loc { grid-area: loc; justify-self: end; font-weight: 400; font-size: 8.5pt; color: #9aa3b2; white-space: nowrap; }
+.plogo { grid-area: logo; justify-self: center; height: 20pt; max-width: 42pt; width: auto; }
 .keep { break-inside: avoid; }
 """
 
